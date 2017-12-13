@@ -12,5 +12,4 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
