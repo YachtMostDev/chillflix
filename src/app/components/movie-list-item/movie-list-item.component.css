@@ -1,0 +1,16 @@
+.movie {
+  width: 250px;
+  height: 250px;
+  border: 1px black solid;
+  margin: 5px;
+  float: left;
+}
+
+.movie-header {
+  height: 80%;
+}
+
+.movie-title {
+  background: grey;
+  height: 20%;
+}
