@@ -1,6 +1,5 @@
 <app-movie-list-item *ngFor="let movie of allMovies | async" [movie]="movie" (click)="select(movie)"></app-movie-list-item>
 
-
-<!--<div class="movie-details-holder" *ngIf="selectedMovie">-->
-  <!--<app-movie-details [movie]="selectedMovie"></app-movie-details>-->
-<!--</div>-->
+<div class="movie-details-holder" *ngIf="selectedMovie">
+  <app-movie-details [movie]="selectedMovie"></app-movie-details>
+</div>

@@ -11,6 +11,10 @@
 }
 
 .movie-title {
-  background: grey;
+  font-weight: bold;
   height: 20%;
+}
+
+.movie:hover {
+  background: gray;
 }

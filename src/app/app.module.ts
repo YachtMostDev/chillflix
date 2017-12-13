@@ -9,13 +9,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 import {MaterialModule} from './modules/material/material.module';
+import { YoutubeVideoComponent } from './components/youtube-video/youtube-video.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieListItemComponent,
     MovieListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    YoutubeVideoComponent
   ],
   imports: [
     BrowserModule,

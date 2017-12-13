@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import {MatCard} from '@angular/material/card';
-import {MatDialog} from '@angular/material';
-import {OVERLAY_PROVIDERS} from '@angular/cdk/overlay';
+import {MatDialog, MatGridList, MatGridTile} from '@angular/material';
 
 @NgModule({
-  declarations: [ MatCard ],
-  exports: [ MatCard ],
-  providers: [ OVERLAY_PROVIDERS, MatDialog ]
+  declarations: [ MatCard, MatGridList, MatGridTile ],
+  exports: [ MatCard, MatGridList, MatGridTile ],
+  providers: [ MatDialog ]
 })
 export class MaterialModule { }
