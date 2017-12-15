@@ -4,6 +4,7 @@ import {MatDialogModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {MovieDetailDialogComponent} from '../../components/movie-details/movie-details.component';
 
@@ -12,7 +13,8 @@ const MATERIAL_MODULES = [
   MatDialogModule,
   BrowserAnimationsModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatToolbarModule
 ];
 
 @NgModule({

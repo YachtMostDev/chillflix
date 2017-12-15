@@ -2,7 +2,9 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 body {
-  background: black;
+  background: #191919;
+  padding: 0px;
+  margin: 0px;
 }
 
 /*
