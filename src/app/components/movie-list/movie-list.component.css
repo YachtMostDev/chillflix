@@ -1,3 +1,13 @@
-.movie-details-holder {
-  clear: both;
+.movie-list {
+  width: auto;
+  height: 320px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.movie-list-item {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
 }
