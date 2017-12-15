@@ -1,18 +1,24 @@
 .movie {
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   margin: 5px;
+  padding: 5px;
 }
 
 .movie-header {
-  height: 80%;
+  /*height: 80%;*/
 }
 
 .movie-title {
   font-weight: bold;
-  height: 20%;
+  padding: 10px;
 }
 
 .movie:hover {
   background: gray;
+}
+
+.movie-thumbnail {
+  width: 100%;
+  height: auto;
 }
