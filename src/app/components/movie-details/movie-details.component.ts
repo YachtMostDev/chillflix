@@ -7,8 +7,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailDialogComponent implements OnInit {
-  @Input() movie;
-
   constructor(
     public dialogRef: MatDialogRef<MovieDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

@@ -1,6 +1,13 @@
 <div class="movie-details">
-  <h1>AAAAAAAAAAAAAAAAAAAAAAH</h1>
   <app-youtube-video [code]="data.movie.code"></app-youtube-video>
-  <h2 class="movie-title">{{data.movie.title}}</h2>
-  <div class="movie-description">{{data.movie.description}}</div>
+  <div mat-dialog-title class="movie-title">{{data.movie.title}}</div>
+  <div mat-dialog-content class="movie-description">
+    {{data.movie.description}}
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-raised-button
+            mat-dialog-close
+            color="primary"
+            (click)="onNoClick()">Close</button>
+  </div>
 </div>
