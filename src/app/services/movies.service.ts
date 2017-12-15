@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class MoviesService {
   private file = '../../assets/movies.json';
+  private popular = '../../assets/popular.json';
 
   constructor(private http: HttpClient) {
   }
@@ -13,6 +14,6 @@ export class MoviesService {
   }
 
   getPopular = () => {
-    return this.http.get(this.file);
+    return this.http.get(this.popular);
   }
 }

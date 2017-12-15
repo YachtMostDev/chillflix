@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import {MovieDetailDialogComponent} from '../movie-details/movie-details.component';
 import {MatDialog} from '@angular/material';
@@ -12,10 +12,16 @@ export class MovieListComponent implements OnInit {
   allMovies;
   selectedMovie;
 
+  @Input() popular;
+
   constructor(private moviesService: MoviesService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.allMovies = this.moviesService.getAll();
+    if (this.popular) {
+      this.allMovies = this.moviesService.getPopular();
+    } else {
+      this.allMovies = this.moviesService.getAll();
+    }
   }
 
   select = (movie) => {
