@@ -3,10 +3,7 @@
   height: 280px;
   margin: 5px;
   padding: 5px;
-}
-
-.movie-header {
-  /*height: 80%;*/
+  background: rgba(128, 128, 128, 0.29);
 }
 
 .movie-title {
@@ -15,7 +12,7 @@
 }
 
 .movie:hover {
-  background: gray;
+  background: rgba(128, 128, 128, 0.37);
 }
 
 .movie-thumbnail {
