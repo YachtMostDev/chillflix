@@ -6,9 +6,9 @@ import { MovieListItemComponent } from './components/movie-list-item/movie-list-
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import {MoviesService} from './services/movies.service';
 import {HttpClientModule} from '@angular/common/http';
-import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { MovieDetailDialogComponent } from './components/movie-details/movie-details.component';
 
-import {MaterialModule} from './modules/material/material.module';
+import { MaterialModule } from './modules/material/material.module';
 import { YoutubeVideoComponent } from './components/youtube-video/youtube-video.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { YoutubeVideoComponent } from './components/youtube-video/youtube-video.
     AppComponent,
     MovieListItemComponent,
     MovieListComponent,
-    MovieDetailsComponent,
+    MovieDetailDialogComponent,
     YoutubeVideoComponent
   ],
   imports: [
