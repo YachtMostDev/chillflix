@@ -15,7 +15,6 @@ export class YoutubeVideoComponent implements OnInit {
   }
 
   youtubeURL = () => {
-    const url = 'https://www.youtube.com/embed/' + this.code;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.code);
   }
 }

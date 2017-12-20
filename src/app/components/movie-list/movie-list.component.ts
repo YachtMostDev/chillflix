@@ -33,11 +33,11 @@ export class MovieListComponent implements OnInit {
     const dialogRef = this.dialog.open(MovieDetailDialogComponent, {
       data: { movie: this.selectedMovie }
     });
-    dialogRef.afterClosed()
-      .subscribe(
-        result => {
-          console.log('Something something');
-        }
-      );
+    // dialogRef.afterClosed()
+    //   .subscribe(
+    //     result => {
+    //       console.log('Something something');
+    //     }
+    //   );
   }
 }

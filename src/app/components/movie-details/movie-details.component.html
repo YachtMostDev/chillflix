@@ -1,5 +1,5 @@
 <div class="movie-details">
-  <app-youtube-video [code]="data.movie.code"></app-youtube-video>
+  <app-youtube-video [code]="data.movie.embed"></app-youtube-video>
   <div mat-dialog-title class="movie-title">{{data.movie.title}}</div>
   <div mat-dialog-content class="movie-description">
     {{data.movie.description}}
@@ -7,7 +7,7 @@
   <div mat-dialog-actions align="end">
     <button mat-raised-button
             mat-dialog-close
-            color="primary"
-            (click)="onNoClick()">Close</button>
+            color="primary">
+            <!--(click)="onNoClick()"-->Close</button>
   </div>
 </div>

@@ -10,3 +10,8 @@
 .content {
   padding: 20px;
 }
+
+.logo a {
+  color: white;
+  text-decoration: none;
+}
