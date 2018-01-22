@@ -1,5 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { filmsReducer } from './state/films.reducer';
 
 import {AppComponent} from './app.component';
 
@@ -30,7 +33,9 @@ import {RatingComponent} from './rating/rating.component';
 		BrowserModule,
 		HttpClientModule,
 		Material,
-		AppRoutingModule
+		AppRoutingModule,
+		StoreModule.forRoot({ films: filmsReducer }),
+		StoreDevtoolsModule.instrument()
 	],
 	providers: [FilmService],
 	bootstrap: [AppComponent]
