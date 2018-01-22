@@ -1,3 +1,13 @@
+.spinner-holder {
+	margin: 25px auto;
+}
+
+.bullshit-holder {
+	text-align: center;
+	width: 100%;
+	color: white;
+}
+
 .spinner {
 	margin: 10px auto;
 }
