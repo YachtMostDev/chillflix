@@ -1,4 +1,5 @@
 import { Store } from '@ngrx/store';
+import  { LOAD_FILMS, RATING_RESET, RATING_PLUS, RATING_MINUS, SET_VIEW } from '../state/films.actions';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -7,28 +8,49 @@ import "rxjs/add/operator/map";
 
 @Injectable()
 export class FilmService {
-	private url = 'http://gorgony.nl:1337/api/movie';
-	private films = null;
+	// private url = 'http://gorgony.nl:1337/api/movie';
+	private url = 'http://localhost:1337/api/movie';
 
-	constructor(private httpClient: HttpClient) { }
+	constructor(private http: HttpClient, private store: Store<any>) { }
 
 	getAll() {
-		if (this.films == null) {
-			let filmsObservable = this.httpClient.get(this.url);
-			filmsObservable.subscribe(films => this.films = films);
-			return filmsObservable;
-		} else {
-			return Observable.of(this.films);
+		this.http.get(this.url)
+			.subscribe(films => {
+				this.store.dispatch({
+					type: LOAD_FILMS,
+					payload: films
+				});
+			});
+	}
+	setRating(film, rating) {
+		const ratingObject = { upvote: 0, downvote: 0};
+		let action = RATING_RESET;
+		if (film.rating === rating) {
+			ratingObject[rating === 1 ? "upvote" : "downvote"] = -1;
+		} else if(rating === 1){
+			action = RATING_PLUS;
+			ratingObject.upvote = 1;
+			if (film.rating === -1) { ratingObject.downvote = -1; }
+		} else if (rating === -1) {
+			action = RATING_MINUS;
+			ratingObject.downvote = 1;
+			if (film.rating === 1) { ratingObject.upvote = -1; }
 		}
+		this.http.post(this.url + `\\${film.id}\\vote`, ratingObject)
+			.subscribe((movie: any) => {
+				this.store.dispatch({
+					type: action,
+					payload: { id: film.id }
+				});
+			});
 	}
-	getById(id) {
-		return new Observable(observer => {
-			this.getAll().subscribe(films => {
-				let film = films.filter(film => film.id == id)[0];
-				observer.next(film);
-				observer.complete();
-			})
-		})
+	addView(film) {
+		this.http.post(this.url + `\\${film.id}\\watch`, {})
+			.subscribe((filmResult: any) => {
+				this.store.dispatch({
+					type: SET_VIEW,
+					payload: { id: filmResult.id, viewCount: filmResult.watched }
+				});
+			});
 	}
-
 }
