@@ -1,0 +1,3 @@
+
+<app-film-list-item *ngFor='let film of allFilms | async' [film]='film' [routerLink]="['/films', film.id]">
+</app-film-list-item>
