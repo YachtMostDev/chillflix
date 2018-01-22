@@ -3,7 +3,7 @@
   height: 280px;
   margin: 5px;
   padding: 5px;
-  background: rgba(128, 128, 128, 0.29);
+  //background: rgba(128, 128, 128, 0.29);
 }
 
 .movie-title {
@@ -12,7 +12,7 @@
 }
 
 .movie:hover {
-  background: rgba(128, 128, 128, 0.37);
+  //background: rgba(128, 128, 128, 0.37);
 }
 
 .movie-thumbnail {

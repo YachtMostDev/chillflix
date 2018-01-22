@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+/* Light default theme */
+@include mat-core();
+$chillflix-primary: mat-palette($mat-red, 700, 500, 80);
+$chillflix-accent:  mat-palette($mat-blue, A200);
+$chillflix-warn:    mat-palette($mat-deep-orange);
+$chillflix-light-theme: mat-light-theme($chillflix-primary, $chillflix-accent, $chillflix-warn);
+@include angular-material-theme($chillflix-light-theme);
+
+/* Light theme hardcoded: <body class=".chillflix-light-theme"> */
+.chillflix-light-theme {
+  @include angular-material-theme($chillflix-light-theme);
+}
+
+/* Dark theme, use: <body class=".chillflix-dark-theme"> */
+@include mat-core();
+$chillflix-dark-theme: mat-dark-theme($chillflix-primary, $chillflix-accent, $chillflix-warn);
+
+.chillflix-dark-theme {
+  @include angular-material-theme($chillflix-dark-theme);
+  background: mat-color($mat-grey, 900, 0.9);
+}

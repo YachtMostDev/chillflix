@@ -1,10 +1,10 @@
 .page-title {
-  color: white;
+  // color: white;
 }
 
 .main-menu {
   margin: 0px;
-  background-color: #ac0000;
+  // background-color: #ac0000;
 }
 
 .content {
@@ -12,6 +12,10 @@
 }
 
 .logo a {
-  color: white;
+  // color: white;
   text-decoration: none;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

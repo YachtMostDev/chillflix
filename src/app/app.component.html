@@ -1,7 +1,18 @@
-<mat-toolbar class="main-menu">
-  <h1 class="logo"><a href="localhost:4200">Crapflix</a></h1>
+<!-- TODO: Move nav to seperate component -->
+<mat-toolbar color="primary" class="main-menu">
+  <mat-toolbar-row>
+    <span>Crapflix</span>
+
+    <!-- TODO: Make spacer a component: mat-toolbar-spacer -->
+    <span class="spacer"></span>
+
+    <button mat-button>Fuck yeah</button>
+    <button mat-button>AAAAAAAAH</button>
+    <button mat-button>Lalallala</button>
+  </mat-toolbar-row>
 </mat-toolbar>
-<div class="content">
+
+<div mat-app-background class="content">
   <h2 class="page-title">
     All videos
   </h2>
