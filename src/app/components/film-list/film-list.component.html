@@ -1,10 +1,12 @@
-<h1>{{title}}</h1>
-<div *ngIf="allFilms; then filmList else spinner"></div>
+<mat-card>
+	<h2>{{title}}</h2>
+	<div *ngIf="allFilms; then filmList else spinner"></div>
+</mat-card>
 
 <ng-template #filmList>
-	<div class="carousel">
-		<div class="carousel-content">
-			<div class="carousel-list">
+	<div #carousel class="carousel">
+		<div #carouselContent class="carousel-content">
+			<div #carouselList class="carousel-list">
 				<app-film-list-item
 					*ngFor='let film of allFilms | async'
 					[film]='film'
@@ -13,10 +15,10 @@
 			</div>
 		</div>
 		<div class="carousel-nav">
-			<button class="carousel-nav-button previous">
+			<button #carouselPrevious class="carousel-nav-button previous">
 				<mat-icon>navigate_before</mat-icon>
 			</button>
-			<button class="carousel-nav-button next">
+			<button #carouselNext class="carousel-nav-button next">
 				<mat-icon>navigate_next</mat-icon>
 			</button>
 		</div>
