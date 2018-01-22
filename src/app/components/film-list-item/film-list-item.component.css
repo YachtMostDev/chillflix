@@ -2,7 +2,6 @@
 	flex: 1 0 180px;
 	width: 180px;
 	height: 135px;
-	background: yellow;
 	margin: 0px 5px;
 	overflow: hidden;
 }
@@ -12,6 +11,7 @@
 	overflow: auto;
 	width: 180px;
 	height: 135px;
+	margin: 0;
 }
 
 .img-container{
