@@ -1,0 +1,40 @@
+/* button {
+	background: transparent;
+	width: 35px;
+	height: 35px;
+} */
+mat-icon {
+	background: transparent;
+}
+
+.button {
+	background-color: transparent;
+	/* Green */
+	width: 40px;
+	height: 40px;
+	border: none;
+	color: white;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 24px;
+	margin: 0;
+	-webkit-transition-duration: 0.4s;
+	/* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	border-radius: 50%;
+}
+
+
+.add-movie {
+	background-color: transparent;
+	color: #666;
+	border: 2px solid white;
+}
+
+.add-movie:hover {
+	background-color: #444;
+	color: white;
+}

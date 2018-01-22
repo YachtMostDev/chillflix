@@ -14,24 +14,26 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FilmService } from './services/film.service';
 import { RatingComponent } from './rating/rating.component';
+import { AddMovieComponent } from './components/add-movie/add-movie.component';
 
 @NgModule({
-  declarations: [
-	  AppComponent,
-	  NavbarComponent,
-	  FilmListComponent,
-  	FilmListItemComponent,
-  	FilmDetailComponent,
+	declarations: [
+		AppComponent,
+		NavbarComponent,
+		FilmListComponent,
+		FilmListItemComponent,
+		FilmDetailComponent,
 		AboutComponent,
-		RatingComponent
-  ],
-  imports: [
-	  BrowserModule,
-  	HttpClientModule,
-    Material,
-    AppRoutingModule
-  ],
-  providers: [FilmService],
-  bootstrap: [AppComponent]
+		RatingComponent,
+		AddMovieComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		Material,
+		AppRoutingModule
+	],
+	providers: [FilmService],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }
