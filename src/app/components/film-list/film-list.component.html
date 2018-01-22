@@ -1,3 +1,13 @@
+<div *ngIf="updatedFilm; then filmList else spinner"></div>
 
-<app-film-list-item *ngFor='let film of allFilms | async' [film]='film' [routerLink]="['/films', film.id]">
-</app-film-list-item>
+<ng-template #filmList>
+	<app-film-list-item
+		*ngFor='let film of allFilms | async'
+		[film]='film'
+		[routerLink]="['/films', film.id]">
+	</app-film-list-item>
+</ng-template>
+
+<ng-template #spinner>
+	<mat-spinner class="spinner"></mat-spinner>
+</ng-template>
