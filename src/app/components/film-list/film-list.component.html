@@ -3,11 +3,13 @@
 <ng-template #filmList>
 	<div class="carousel">
 		<div class="carousel-content">
-			<app-film-list-item
-				*ngFor='let film of allFilms | async'
-				[film]='film'
-				[routerLink]="['/films', film.id]">
-			</app-film-list-item>
+			<div class="carousel-list">
+				<app-film-list-item
+					*ngFor='let film of allFilms | async'
+					[film]='film'
+					[routerLink]="['/films', film.id]">
+				</app-film-list-item>
+			</div>
 		</div>
 		<div class="carousel-nav">
 			<button class="carousel-previous"><</button>

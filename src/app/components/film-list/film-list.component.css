@@ -1,3 +1,40 @@
+.carousel {
+	padding: 0 30px;
+	position: relative;
+	margin: 10px 10px;
+	background: rgba(255, 255, 255, 0.04);
+}
+
+/****** CAROUSEL NAV *****/
+.carousel-previous, .carousel-next {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.05);
+	border: none;
+}
+
+.carousel-previous {
+	left: 0;
+}
+
+.carousel-next {
+	right: 0;
+}
+
+/**** CAROUSEL LISTR ******/
+.carousel-content {
+	height: 200px;
+	overflow: hidden;
+}
+
+.carousel-list {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/********* SPINNER *********/
 .spinner-holder {
 	margin: 25px auto;
 }
