@@ -1,20 +1,26 @@
-<div *ngIf="updatedFilm">
-<mat-card class="film-card">
-  <mat-card-header>
-    <mat-card-title><h3 class="mat-h3">{{updatedFilm.title}}</h3></mat-card-title>
-    <!-- <mat-card-subtitle>{{film.}}</mat-card-subtitle> -->
-  </mat-card-header>
-  <img class="img" mat-card-image src={{updatedFilm.thumbnail}} alt="thumbnail">
-  <mat-card-content class="card-content">
-    <span class="trim-info" matTooltip="{{updatedFilm.fulldescription}}">{{updatedFilm.description}}</span>
+<div class="carousel-item">
 
-
-    <!-- <p>
-      {{film.description | limitTo: 250 }}
-    </p> -->
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button [routerLink]="['/films', updatedFilm.id]">Watch</button>
-  </mat-card-actions>
-</mat-card>
 </div>
+
+
+
+<!--<div *ngIf="updatedFilm">-->
+<!--<mat-card class="film-card">-->
+<!--<mat-card-header>-->
+<!--<mat-card-title><h3 class="mat-h3">{{updatedFilm.title}}</h3></mat-card-title>-->
+<!--&lt;!&ndash; <mat-card-subtitle>{{film.}}</mat-card-subtitle> &ndash;&gt;-->
+<!--</mat-card-header>-->
+<!--<img class="img" mat-card-image src={{updatedFilm.thumbnail}} alt="thumbnail">-->
+<!--<mat-card-content class="card-content">-->
+<!--<span class="trim-info" matTooltip="{{updatedFilm.fulldescription}}">{{updatedFilm.description}}</span>-->
+
+
+<!--&lt;!&ndash; <p>-->
+<!--{{film.description | limitTo: 250 }}-->
+<!--</p> &ndash;&gt;-->
+<!--</mat-card-content>-->
+<!--<mat-card-actions>-->
+<!--<button mat-button [routerLink]="['/films', updatedFilm.id]">Watch</button>-->
+<!--</mat-card-actions>-->
+<!--</mat-card>-->
+<!--</div>-->
