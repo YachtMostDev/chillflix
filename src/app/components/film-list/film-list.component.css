@@ -1,30 +1,32 @@
 .carousel {
-	padding: 0 30px;
+	padding: 0 25px;
 	position: relative;
 	margin: 10px 10px;
 	background: rgba(255, 255, 255, 0.04);
 }
 
 /****** CAROUSEL NAV *****/
-.carousel-previous, .carousel-next {
+.carousel-nav-button.previous, .carousel-nav-button.next {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	background: rgba(255, 255, 255, 0.05);
 	border: none;
+	width: 25px;
+	padding: 0;
 }
 
-.carousel-previous {
+.carousel-nav-button.previous {
 	left: 0;
 }
 
-.carousel-next {
+.carousel-nav-button.next {
 	right: 0;
 }
 
 /**** CAROUSEL LISTR ******/
 .carousel-content {
-	height: 200px;
+	height: 135px;
 	overflow: hidden;
 }
 

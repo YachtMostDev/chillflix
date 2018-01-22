@@ -17,19 +17,19 @@ import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
-	  AppComponent,
-	  NavbarComponent,
-	  FilmListComponent,
-  	FilmListItemComponent,
-  	FilmDetailComponent,
-		AboutComponent,
-		RatingComponent
+	AppComponent,
+	NavbarComponent,
+	FilmListComponent,
+	FilmListItemComponent,
+	FilmDetailComponent,
+	AboutComponent,
+	RatingComponent
   ],
   imports: [
-	  BrowserModule,
-  	HttpClientModule,
-    Material,
-    AppRoutingModule
+	BrowserModule,
+	HttpClientModule,
+	Material,
+	AppRoutingModule
   ],
   providers: [FilmService],
   bootstrap: [AppComponent]

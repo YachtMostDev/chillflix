@@ -1,30 +1,6 @@
-.film-card {
-	width: 400px;
-	height: 500px;
-	float: left;
-	margin: 25px;
-	/* border-radius: 25px;
-	border-color: black; */
+.carousel-item {
+	width: 180px;
+	height: 135px;
+	background: yellow;
+	margin: 0px 5px;
 }
-.example-header-image {
-	background-size: cover;
-}
-
-.img {
-	height: 300px;
-}
-.card-content {
-	height: 60px;
-}
-
-/* .trim-info {
-	max-width: 399px;
-	max-height: 58px;
-	display: inline-block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	/* white-space: nowrap; *
-	line-height: 15px;
-	position: relative;
-} */
-
