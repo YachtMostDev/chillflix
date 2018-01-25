@@ -8,8 +8,8 @@ import "rxjs/add/operator/map";
 
 @Injectable()
 export class FilmService {
-	// private url = 'http://gorgony.nl:1337/api/movie';
-	private url = 'http://localhost:1337/api/movie';
+	private url = 'http://gorgony.nl:1337/api/movie';
+	// private url = 'http://localhost:1337/api/movie';
 
 	constructor(private http: HttpClient, private store: Store<any>) { }
 
