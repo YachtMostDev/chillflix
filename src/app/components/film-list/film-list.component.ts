@@ -1,5 +1,7 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from '../../services/film.service';
+import 'rxjs/add/operator/pluck';
 
 @Component({
   selector: 'app-film-list',
@@ -9,13 +11,12 @@ import { FilmService } from '../../services/film.service';
 export class FilmListComponent implements OnInit {
 
   allFilms;
-  filmService;
-  constructor(filmService: FilmService) {
-    this.filmService = filmService;
-   }
+  constructor(private filmService: FilmService, private store: Store<any>) {
+  }
 
   ngOnInit() {
-    this.allFilms = this.filmService.getAll();
+  	this.filmService.getAll();
+	this.allFilms = this.store.select("films").pluck("films");
   }
 
 }
