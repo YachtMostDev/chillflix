@@ -13,7 +13,6 @@ import {FilmDetailComponent} from './components//film-detail/film-detail.compone
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
 
-
 import { FilmService } from './services/film.service';
 import { RatingComponent } from './rating/rating.component';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';

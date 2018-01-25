@@ -1,10 +1,10 @@
 import { Store } from '@ngrx/store';
-import  { LOAD_FILMS, RATING_RESET, RATING_PLUS, RATING_MINUS, SET_VIEW } from '../state/films.actions';
+import { LOAD_FILMS, RATING_RESET, RATING_PLUS, RATING_MINUS, SET_VIEW } from '../state/films.actions';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import "rxjs/add/operator/map";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FilmService {
@@ -26,8 +26,8 @@ export class FilmService {
 		const ratingObject = { upvote: 0, downvote: 0};
 		let action = RATING_RESET;
 		if (film.rating === rating) {
-			ratingObject[rating === 1 ? "upvote" : "downvote"] = -1;
-		} else if(rating === 1){
+			ratingObject[rating === 1 ? 'upvote' : 'downvote'] = -1;
+		} else if (rating === 1) {
 			action = RATING_PLUS;
 			ratingObject.upvote = 1;
 			if (film.rating === -1) { ratingObject.downvote = -1; }
@@ -36,7 +36,7 @@ export class FilmService {
 			ratingObject.downvote = 1;
 			if (film.rating === 1) { ratingObject.upvote = -1; }
 		}
-		this.http.post(this.url + `\\${film.id}\\vote`, ratingObject)
+		this.http.post(this.url + '\\${film.id}\\vote', ratingObject)
 			.subscribe((movie: any) => {
 				this.store.dispatch({
 					type: action,
@@ -45,7 +45,7 @@ export class FilmService {
 			});
 	}
 	addView(film) {
-		this.http.post(this.url + `\\${film.id}\\watch`, {})
+		this.http.post(this.url + '\\${film.id}\\watch', {})
 			.subscribe((filmResult: any) => {
 				this.store.dispatch({
 					type: SET_VIEW,
