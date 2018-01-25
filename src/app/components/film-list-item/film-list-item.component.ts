@@ -26,8 +26,8 @@ export class FilmListItemComponent implements OnInit {
     
     this.updatedFilm = updateFilm
   
-    console.log(this.film);
-    console.log(this.updatedFilm);
+    // console.log(this.film);
+    // console.log(this.updatedFilm);
   }
 
 }

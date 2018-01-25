@@ -4,5 +4,8 @@
 	<img class="img" mat-card-image src={{film.thumbnail}} alt="thumbnail">
 	<br>
 	<app-rating id={{film.rating}}></app-rating>
-</div> -->
+</div>
+
+<app-add-movie></app-add-movie>
+
 <mat-spinner *ngIf="!film" class="spinner"></mat-spinner>
