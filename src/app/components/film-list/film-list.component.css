@@ -1,10 +1,10 @@
 .carousel {
 	position: relative;
-	margin: 10px 0;
+	margin: 10px 60px;
 }
 
 h2{
-	margin: 50px 60px 0 60px;
+	margin: 40px 60px 0 60px;
 }
 
 /****** CAROUSEL NAV *****/
@@ -20,17 +20,16 @@ h2{
 }
 
 .carousel-nav-button.previous {
-	left: 0px;
+	left: -60px;
 }
 
 .carousel-nav-button.next {
-	right: 0px;
+	right: -60px;
 }
 
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
-	margin: 0 60px;
 	/*overflow: hidden;*/
 }
 

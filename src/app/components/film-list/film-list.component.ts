@@ -69,7 +69,7 @@ export class FilmListComponent implements OnInit {
 	}
 
 	calculateNewPosition() {
-		this.itemWidth = 190;
+		this.itemWidth = 184;
 		// this.itemWidth = this.items[0].nativeElement.offsetWidth;
 		this.carouselWidth = this.carousel.nativeElement.offsetWidth;
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
