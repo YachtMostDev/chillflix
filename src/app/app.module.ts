@@ -19,6 +19,7 @@ import { ThumbsComponent } from './thumbs/thumbs.component';
 
 import {FilmService} from './services/film.service';
 import {RatingComponent} from './rating/rating.component';
+import { ThumbsDownComponent } from './thumbs-down/thumbs-down.component';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import {RatingComponent} from './rating/rating.component';
 		FilmDetailComponent,
 		AboutComponent,
 		RatingComponent,
-		ThumbsComponent
+		ThumbsComponent,
+		ThumbsDownComponent
   ],
   imports: [
 	  BrowserModule,

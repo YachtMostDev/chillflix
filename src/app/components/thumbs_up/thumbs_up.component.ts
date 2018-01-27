@@ -11,17 +11,17 @@ export class ThumbsComponent implements OnInit {
 
   ngOnInit() {
   }
-  vote = 0
+//   vote = 0
 
-  function upVote() {
-    vote = 1
-    class = upVote
+//   function upVote() {
+//     vote = 1
+//     class = upVote
     
-  }
-  function downVote(){
-    vote = -1
-    class = downVote
-  }
+//   }
+//   function downVote(){
+//     vote = -1
+//     class = downVote
+//   }
 
-  https://jsfiddle.net/coligo/g7mu5ndz/
-}
+//   https://jsfiddle.net/coligo/g7mu5ndz/
+ }
