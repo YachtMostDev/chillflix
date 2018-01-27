@@ -2,74 +2,81 @@ import {
 	Component,
 	ElementRef,
 	Input,
-	OnInit,
-	ViewChild
+	OnInit, QueryList,
+	ViewChild, ViewChildren
 } from '@angular/core';
-import { FilmService } from '../../services/film.service';
+import {FilmService} from '../../services/film.service';
 
 @Component({
-  selector: 'app-film-list',
-  templateUrl: './film-list.component.html',
-  styleUrls: ['./film-list.component.css']
+	selector: 'app-film-list',
+	templateUrl: './film-list.component.html',
+	styleUrls: ['./film-list.component.css']
 })
 export class FilmListComponent implements OnInit {
-  @Input() title;
+	@Input() title;
 
-  @ViewChild('carousel') carousel: ElementRef;
+	@ViewChild('carousel') carousel: ElementRef;
+	@ViewChildren('item', {read: ElementRef}) items: QueryList<ElementRef>;
 
-  previousVisible = false;
-  nextVisible = true;
-  currentPage = 0;
-  length: number;
-  itemWidth: number;
-  carouselWidth: number;
-  itemsPerPage: number;
-  nrOfPages: number;
-  negativeMargin: number;
+	previousVisible = false;
+	nextVisible = true;
+	currentPage = 0;
+	length: number;
+	itemWidth: number;
+	carouselWidth: number;
+	itemsPerPage: number;
+	nrOfPages: number;
+	negativeMargin = 0;
 
-  allFilms;
-  filmService;
-  constructor(filmService: FilmService) {
-	this.filmService = filmService;
-  }
+	allFilms;
+	filmService;
 
-  ngOnInit() {
-  	this.filmService.getAll().subscribe(result => {
-  		this.allFilms = result;
-		this.length = this.allFilms.length;
-		this.itemWidth = 190; // TODO: Don't hard code this
-	});
-  }
+	constructor(filmService: FilmService) {
+		this.filmService = filmService;
+	}
 
-  previousClick() {
-  	this.currentPage--;
-  	this.calculateNewPosition();
-  }
+	ngOnInit() {
+		this.filmService.getAll().subscribe(result => {
+			this.allFilms = result;
+			this.length = this.allFilms.length;
+		});
+	}
 
-  nextClick() {
-	this.currentPage++;
-	this.calculateNewPosition();
-  }
+	previousClick(): void {
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		if (this.currentPage > 0) {
+			this.currentPage--;
+			this.calculateNewPosition();
+		}
+		console.log('Going to previous page: ' + this.currentPage);
+	}
 
-  calculateNewPosition() {
-	  this.carouselWidth = this.carousel.nativeElement.offsetWidth;
-	  this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
-	  this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+	nextClick(): void {
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		if (this.currentPage < this.nrOfPages) {
+			this.currentPage++;
+			this.calculateNewPosition();
+		}
+		console.log('Going to next page: ' + this.currentPage);
+	}
 
-  	  if (this.currentPage <= 0) {
-  	  	this.currentPage = 0;
-  	  	this.previousVisible = false;
-	  } else {
-  	  	this.previousVisible = true;
-	  }
-	  if (this.currentPage >= this.nrOfPages - 1) {
-		this.currentPage = this.nrOfPages - 1;
-		this.nextVisible = false;
-	  } else {
-  	  	this.nextVisible = true;
-	  }
-	  console.log('Current page: ' + this.currentPage);
+	calcPreviousVisible(): void {
+		this.previousVisible = this.currentPage > 0;
+	}
 
-	  this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
-  }
+	calcNextVisible(): void {
+		this.nextVisible = this.currentPage < this.nrOfPages - 1;
+	}
+
+	calculateNewPosition() {
+		this.itemWidth = 190;
+		// this.itemWidth = this.items[0].nativeElement.offsetWidth;
+		this.carouselWidth = this.carousel.nativeElement.offsetWidth;
+		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
+		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+
+		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
+		this.calcNextVisible();
+		this.calcPreviousVisible();
+	}
 }

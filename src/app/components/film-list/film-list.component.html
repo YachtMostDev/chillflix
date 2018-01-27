@@ -1,43 +1,31 @@
 <mat-card>
 	<h2>{{title}}</h2>
-	<div *ngIf="allFilms; then filmList else spinner"></div>
-</mat-card>
-
-<ng-template #filmList>
+	<div class="pagesHolder">
+		<div class="page"></div>
+	</div>
 	<div #carousel class="carousel">
-		<div #carouselContent class="carousel-content">
-			<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
+		<div class="carousel-content">
+			<div class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
 				<app-film-list-item
 					*ngFor='let film of allFilms'
 					[film]='film'
-					[routerLink]="['/films', film.id]">
+					[routerLink]="['/films', film.id]"
+					#item
+				>
 				</app-film-list-item>
 			</div>
 		</div>
 		<div class="carousel-nav">
-			<button mat-button
-					#carouselPrevious
-					class="carousel-nav-button previous"
-					*ngIf="previousVisible"
-					(click)="previousClick()"
-			>
-				<mat-icon>navigate_before</mat-icon>
-			</button>
-			<button mat-button
-					#carouselNext
-					class="carousel-nav-button next"
-					*ngIf="nextVisible"
-					(click)="nextClick()"
-			>
-				<mat-icon>navigate_next</mat-icon>
-			</button>
+			<div *ngIf="previousVisible">
+				<button mat-button class="carousel-nav-button previous" (click)="previousClick()">
+					<mat-icon>navigate_before</mat-icon>
+				</button>
+			</div>
+			<div *ngIf="nextVisible">
+				<button mat-button class="carousel-nav-button next" (click)="nextClick()">
+					<mat-icon>navigate_next</mat-icon>
+				</button>
+			</div>
 		</div>
 	</div>
-</ng-template>
-
-<ng-template #spinner>
-	<div class="spinner-holder">
-		<mat-spinner class="spinner"></mat-spinner>
-		<div class="bullshit-holder">Retrieving the most awesome movies!</div>
-	</div>
-</ng-template>
+</mat-card>
