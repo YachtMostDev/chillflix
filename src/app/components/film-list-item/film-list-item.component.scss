@@ -2,16 +2,17 @@ $animation-duration:	0.3s;
 $primary-color: rgba(218, 13, 13, 0.85);
 
 .carousel-item {
-	flex: 1 0 180px;
+	// flex: 1 0 180px;
 	width: 180px;
 	height: 135px;
-	margin: 0px 5px;
+
+	// width: 20%;
+
+	padding: 0px 2px;
 	position: relative;
-	overflow: hidden;
 	text-shadow: 0 1px 1px rgba(0,0,0,.5);
 	transition: width $animation-duration;
 	&:hover {
-		overflow: visible;
 		width: 360px;
 		.img-container {
 			width: 360px;

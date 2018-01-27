@@ -1,6 +1,10 @@
 .carousel {
 	position: relative;
-	margin: 10px 10px;
+	margin: 10px 0;
+}
+
+h2{
+	margin: 50px 60px 0 60px;
 }
 
 /****** CAROUSEL NAV *****/
@@ -12,32 +16,41 @@
 	border: none;
 	padding: 0;
 	z-index: 1500;
+	min-width: 60px;
 }
 
 .carousel-nav-button.previous {
-	left: -25px;
+	left: 0px;
 }
 
 .carousel-nav-button.next {
-	right: -25px;
+	right: 0px;
 }
 
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
+	margin: 0 60px;
 	/*overflow: hidden;*/
 }
 
 .carousel-list {
 	position: relative;
-	display: flex;
+	display:inline-flex;
 	right: 0;
+	width: 100%;
 	transition: right 0.3s;
 	/* flex-wrap: wrap; */
 }
 
-.carousel-list:hover{
+/* middle list-items */
+/* .carousel-list:hover{
 	right: 90px;
+} */
+
+/* right list-item */
+.carousel-list:hover{
+	right: 180px;
 }
 
 /********* SPINNER *********/
