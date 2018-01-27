@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-film-list-item',
   templateUrl: './film-list-item.component.html',
-  styleUrls: ['./film-list-item.component.css']
+  styleUrls: ['./film-list-item.component.scss']
 })
 export class FilmListItemComponent implements OnInit {
 

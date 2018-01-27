@@ -27,14 +27,24 @@
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 .carousel-list {
 	position: relative;
 	display: flex;
-	flex-wrap: wrap;
+	right: 0;
+	transition: right 0.3s;
+	/* flex-wrap: wrap; */
 }
+
+.carousel-list:hover{
+	right: 90px;
+}
+
+/* .carousel-list:hover{
+	right: 180px;
+} */
 
 /********* SPINNER *********/
 .spinner-holder {
