@@ -2,7 +2,6 @@
 	padding: 0 25px;
 	position: relative;
 	margin: 10px 10px;
-	background: rgba(255, 255, 255, 0.04);
 }
 
 /****** CAROUSEL NAV *****/
@@ -10,24 +9,24 @@
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	background: rgba(255, 255, 255, 0.05);
+	background: rgba(0, 0, 0, 0.5);
 	border: none;
-	width: 25px;
 	padding: 0;
+	z-index: 1500;
 }
 
 .carousel-nav-button.previous {
-	left: 0;
+	left: -25px;
 }
 
 .carousel-nav-button.next {
-	right: 0;
+	right: -25px;
 }
 
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
-	/* overflow: hidden; */
+	/*overflow: hidden;*/
 }
 
 .carousel-list {
@@ -41,10 +40,6 @@
 .carousel-list:hover{
 	right: 90px;
 }
-
-/* .carousel-list:hover{
-	right: 180px;
-} */
 
 /********* SPINNER *********/
 .spinner-holder {
