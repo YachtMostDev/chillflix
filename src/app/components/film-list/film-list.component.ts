@@ -16,9 +16,19 @@ export class FilmListComponent implements OnInit {
   @ViewChild('carousel') carousel: ElementRef;
   @ViewChild('carouselContent') carouselContent: ElementRef;
   @ViewChild('carouselList') carouselList: ElementRef;
-  @ViewChildren('carouselListItem') carouselListItems: QueryList<FilmListItemComponent>;
+  @ViewChildren('carouselListItem') carouselListItems: QueryList<ElementRef>;
   @ViewChild('carouselPrevious') carouselPrevious: ElementRef;
   @ViewChild('carouselNext') carouselNext: ElementRef;
+
+  previousVisible = false;
+  nextVisible = true;
+  currentPage = 0;
+  length: number;
+  itemWidth: number;
+  carouselWidth: number;
+  itemsPerPage: number;
+  nrOfPages: number;
+  negativeMargin: number;
 
   allFilms;
   filmService;
@@ -27,16 +37,42 @@ export class FilmListComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.allFilms = this.filmService.getAll();
+  	this.filmService.getAll().subscribe(result => {
+  		this.allFilms = result;
+		this.length = this.allFilms.length;
+		this.itemWidth = 190; // TODO: Don't hard code this
+	});
   }
 
-  private setWidth(): void {
-	this.carouselList.nativeElement.removeAttribute('style');
-	const currentWidth = this.carouselListItems[0].nativeElement.outerWidth() * this.carouselListItems.length;
-	this.carouselList.nativeElement.style.width = currentWidth;
+  previousClick() {
+  	this.currentPage--;
+  	this.calculateNewPosition();
   }
 
-  private slide(): void {
-	// stuff
+  nextClick() {
+	this.currentPage++;
+	this.calculateNewPosition();
+  }
+
+  calculateNewPosition() {
+	  this.carouselWidth = this.carousel.nativeElement.offsetWidth;
+	  this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
+	  this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+
+  	  if (this.currentPage <= 0) {
+  	  	this.currentPage = 0;
+  	  	this.previousVisible = false;
+	  } else {
+  	  	this.previousVisible = true;
+	  }
+	  if (this.currentPage >= this.nrOfPages - 1) {
+		this.currentPage = this.nrOfPages - 1;
+		this.nextVisible = false;
+	  } else {
+  	  	this.nextVisible = true;
+	  }
+	  console.log('Current page: ' + this.currentPage);
+
+	  this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
   }
 }

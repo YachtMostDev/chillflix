@@ -6,19 +6,29 @@
 <ng-template #filmList>
 	<div #carousel class="carousel">
 		<div #carouselContent class="carousel-content">
-			<div #carouselList class="carousel-list">
+			<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
 				<app-film-list-item
-					*ngFor='let film of allFilms | async'
+					*ngFor='let film of allFilms'
 					[film]='film'
 					[routerLink]="['/films', film.id]">
 				</app-film-list-item>
 			</div>
 		</div>
 		<div class="carousel-nav">
-			<button mat-button #carouselPrevious class="carousel-nav-button previous">
+			<button mat-button
+					#carouselPrevious
+					class="carousel-nav-button previous"
+					*ngIf="previousVisible"
+					(click)="previousClick()"
+			>
 				<mat-icon>navigate_before</mat-icon>
 			</button>
-			<button mat-button #carouselNext class="carousel-nav-button next">
+			<button mat-button
+					#carouselNext
+					class="carousel-nav-button next"
+					*ngIf="nextVisible"
+					(click)="nextClick()"
+			>
 				<mat-icon>navigate_next</mat-icon>
 			</button>
 		</div>
