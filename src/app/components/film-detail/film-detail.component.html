@@ -1,8 +1,32 @@
-<div *ngIf="film">
-	<h3 class="mat-h3">{{film.title}}</h3>
-	<br>
-	<img class="img" mat-card-image src={{film.thumbnail}} alt="thumbnail">
-	<br>
-	<app-rating id={{film.rating}}></app-rating>
+<div class="myclass">
+	<div class="row">
+		<div class="column left">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<h1 style="color:white;">{{film.title}}</h1>
+			<h3 style="color:grey;">
+				{{film.description}}
+			</h3>
+			<h4 style="color:white;">
+				Average rating: {{film.rating}} &emsp;&emsp;&emsp; Amount of ratings: {{film.rating_amount}}&emsp;&emsp;&emsp; Views:   {{film.watched}}
+			</h4>
+			<h4 style="color:white;">
+				Categoriën:&emsp;({{film.categories}})
+			</h4>
+			<p>
+			<!--THUMBS AND LIST STUFF HIEREH!!!-->
+			</p>
+		
+		</div>	
+
+		<div *ngIf="film" class="column right">
+				<button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;">Close</button>
+			<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
+		</div>
+	
+	</div>
 </div>
 <mat-spinner *ngIf="!film" class="spinner"></mat-spinner>
