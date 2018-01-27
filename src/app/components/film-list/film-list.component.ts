@@ -1,9 +1,11 @@
 import {
-	AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild,
-	ViewChildren
+	Component,
+	ElementRef,
+	Input,
+	OnInit,
+	ViewChild
 } from '@angular/core';
 import { FilmService } from '../../services/film.service';
-import {FilmListItemComponent} from "../film-list-item/film-list-item.component";
 
 @Component({
   selector: 'app-film-list',
@@ -14,11 +16,6 @@ export class FilmListComponent implements OnInit {
   @Input() title;
 
   @ViewChild('carousel') carousel: ElementRef;
-  @ViewChild('carouselContent') carouselContent: ElementRef;
-  @ViewChild('carouselList') carouselList: ElementRef;
-  @ViewChildren('carouselListItem') carouselListItems: QueryList<ElementRef>;
-  @ViewChild('carouselPrevious') carouselPrevious: ElementRef;
-  @ViewChild('carouselNext') carouselNext: ElementRef;
 
   previousVisible = false;
   nextVisible = true;
