@@ -6,27 +6,27 @@
 			<br>
 			<br>
 			<br>
-			<h1 style="color:white;">{{film.title}}</h1>
+			<h1 style="color:white;">{{film?.title}}</h1>
 			<h3 style="color:grey;">
-				{{film.description}}
+				{{film?.description}}
 			</h3>
 			<h4 style="color:white;">
-				Average rating: {{film.rating}} &emsp;&emsp;&emsp; Amount of ratings: {{film.rating_amount}}&emsp;&emsp;&emsp; Views:   {{film.watched}}
+				Average rating: {{film?.rating}} &emsp;&emsp;&emsp; Amount of ratings: {{film?.rating_amount}}&emsp;&emsp;&emsp; Views:   {{film?.watched}}
 			</h4>
 			<h4 style="color:white;">
-				Categoriën:&emsp;({{film.categories}})
+				Categoriën:&emsp;({{film?.categories}})
 			</h4>
 			<p>
 			<!--THUMBS AND LIST STUFF HIEREH!!!-->
 			</p>
-		
-		</div>	
+
+		</div>
 
 		<div *ngIf="film" class="column right">
-				<button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;">Close</button>
+				<button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;" (click)="deselect()">Close</button>
 			<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
 		</div>
-	
+
 	</div>
 </div>
 <mat-spinner *ngIf="!film" class="spinner"></mat-spinner>
