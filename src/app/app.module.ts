@@ -13,8 +13,9 @@ import {FilmDetailComponent} from './components//film-detail/film-detail.compone
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
 
-import {AppRoutingModule} from './routers/app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import { FilmService } from './services/film.service';
+import { RatingComponent } from './rating/rating.component';
+import { ThumbsComponent } from './thumbs/thumbs.component';
 
 import {FilmService} from './services/film.service';
 import {RatingComponent} from './rating/rating.component';
@@ -27,18 +28,17 @@ import {RatingComponent} from './rating/rating.component';
 		FilmListItemComponent,
 		FilmDetailComponent,
 		AboutComponent,
-		RatingComponent
-	],
-	imports: [
-		BrowserModule,
-		HttpClientModule,
-		Material,
-		AppRoutingModule,
-		StoreModule.forRoot({ films: filmsReducer }),
-		StoreDevtoolsModule.instrument()
-	],
-	providers: [FilmService],
-	bootstrap: [AppComponent]
+		RatingComponent,
+		ThumbsComponent
+  ],
+  imports: [
+	  BrowserModule,
+  	HttpClientModule,
+    Material,
+    AppRoutingModule
+  ],
+  providers: [FilmService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
