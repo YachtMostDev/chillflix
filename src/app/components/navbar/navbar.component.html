@@ -1,7 +1,19 @@
 <mat-toolbar>
-  Chillflix
-  &nbsp;
-  <button mat-button [routerLink]="['/home']">Home</button>
-  <button mat-button [routerLink]="['/films']">Film</button>
-  <button mat-button [routerLink]="['/about']">About</button>
+	Chillflix &nbsp;
+	<button mat-button [routerLink]="['/home']">Home</button>
+	<button mat-button [routerLink]="['/films']">Film</button>
+	<button mat-button [routerLink]="['/about']">About</button>
+
+	<div class="input-group-search">
+		<input id="inputSearchFilms" type="search" ng-model="filterFilms" class="form-control shortInputSearch" placeholder="Search a film">
+		<div class="input-group-btn">
+			<button class="btn btn-primary" ng-click="search();">
+				<i class="glyphicon glyphicon-search"></i>
+			</button>
+			<button class="btn btn-primary" ng-click="clearSearch();">
+				<i class="glyphicon glyphicon-remove-sign"></i>
+			</button>
+		</div>
+	</div>
+
 </mat-toolbar>
