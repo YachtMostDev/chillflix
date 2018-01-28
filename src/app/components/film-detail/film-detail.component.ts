@@ -26,13 +26,6 @@ export class FilmDetailComponent implements OnInit {
 		this.filmService.getAll();
 		this.store.select("films").subscribe(state => this.film = state.films.find(film => film.id === state.selectedFilm));
   }
-  
-  availableColors = [
-    { name: 'none', color: '' },
-    { name: 'Primary', color: 'primary' },
-    { name: 'Accent', color: 'accent' },
-    { name: 'Warn', color: 'warn' }
-  ];
 
 	deselect() {
 		this.store.dispatch({
