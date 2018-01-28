@@ -6,6 +6,9 @@ import {
 	ViewChild, ViewChildren
 } from '@angular/core';
 import {FilmService} from '../../services/film.service';
+import {Store} from '@ngrx/store';
+import 'rxjs/add/operator/pluck';
+import {SELECT_FILM} from "../../state/films.actions";
 
 @Component({
 	selector: 'app-film-list',
@@ -31,15 +34,13 @@ export class FilmListComponent implements OnInit {
 	allFilms;
 	filmService;
 
-	constructor(filmService: FilmService) {
+	constructor(filmService: FilmService, private store: Store<any>) {
 		this.filmService = filmService;
 	}
 
 	ngOnInit() {
-		this.filmService.getAll().subscribe(result => {
-			this.allFilms = result;
-			this.length = this.allFilms.length;
-		});
+		this.filmService.getAll();
+		this.allFilms = this.store.select("films").pluck("films");
 	}
 
 	previousClick(): void {
@@ -69,6 +70,7 @@ export class FilmListComponent implements OnInit {
 	}
 
 	calculateNewPosition() {
+		this.length = this.allFilms.length;
 		this.itemWidth = 184;
 		// this.itemWidth = this.items[0].nativeElement.offsetWidth;
 		this.carouselWidth = this.carousel.nativeElement.offsetWidth;
@@ -78,5 +80,12 @@ export class FilmListComponent implements OnInit {
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();
 		this.calcPreviousVisible();
+	}
+
+	select(film) {
+		this.store.dispatch({
+			type: SELECT_FILM,
+			payload: film
+		});
 	}
 }

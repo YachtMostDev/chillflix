@@ -1,21 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { filmsReducer } from './state/films.reducer';
 
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FilmListComponent } from './components//film-list/film-list.component';
-import { FilmListItemComponent } from './components//film-list-item/film-list-item.component';
-import { FilmDetailComponent } from './components//film-detail/film-detail.component';
-import { AboutComponent } from './components//about/about.component';
-import { Material } from './material/material.module';
+import {AppComponent} from './app.component';
 
-import { AppRoutingModule } from './routers/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {FilmListComponent} from './components//film-list/film-list.component';
+import {FilmListItemComponent} from './components//film-list-item/film-list-item.component';
+import {FilmDetailComponent} from './components//film-detail/film-detail.component';
+import {AboutComponent} from './components//about/about.component';
+import {Material} from './material/material.module';
 
 import { FilmService } from './services/film.service';
 import { RatingComponent } from './rating/rating.component';
 import { FilmsComponent } from './components/films/films.component';
 import { FilmListItemTagComponent } from './components/film-list-item-tag/film-list-item-tag.component';
+import {HttpClientModule} from '@angular/common/http';
+import {HamburgerMenuComponent} from './hamburger-menu/hamburger-menu.component';
+import {AddMovieComponent} from './components/add-movie/add-movie.component';
+import {AppRoutingModule} from './routers/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,15 +32,20 @@ import { FilmListItemTagComponent } from './components/film-list-item-tag/film-l
 	AboutComponent,
 	RatingComponent,
 	FilmsComponent,
-	FilmListItemTagComponent
+	FilmListItemTagComponent,
+	AddMovieComponent,
+	HamburgerMenuComponent
   ],
   imports: [
 	BrowserModule,
 	HttpClientModule,
 	Material,
-	AppRoutingModule
+	AppRoutingModule,
+	StoreModule.forRoot({ films: filmsReducer }),
+	StoreDevtoolsModule.instrument()
   ],
   providers: [FilmService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

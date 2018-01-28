@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {Component, OnInit, Input} from '@angular/core';
+import {SELECT_FILM} from "../../state/films.actions";
 
 @Component({
   selector: 'app-film-list-item',
@@ -7,22 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FilmListItemComponent implements OnInit {
 
-  constructor() { }
+	constructor(private store: Store<any>) {
+	}
 
-  @Input() film;
+	@Input() film;
 
-  private updatedFilm;
+	private updatedFilm;
 
-  ngOnInit() {
-    const maxLength = 200;
-    const updateFilm = this.film;
-    const length = this.film.description.length;
-    updateFilm['fulldescription'] = this.film.description;
+	ngOnInit() {
+		const maxLength = 200;
+		const updateFilm = this.film;
+		const length = this.film.description.length;
+		updateFilm["fulldescription"] = this.film.description;
 
-    if (length > maxLength) {
-      updateFilm.description = this.film.description.substring(0, maxLength) + '...';
-    }
-    this.updatedFilm = updateFilm;
-  }
+		if (length > maxLength) {
 
+			updateFilm.description = this.film.description.substring(0, maxLength) + '...';
+		}
+
+		this.updatedFilm = updateFilm;
+	}
 }
