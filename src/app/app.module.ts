@@ -18,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {FilmService} from './services/film.service';
 import {RatingComponent} from './rating/rating.component';
+import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import {RatingComponent} from './rating/rating.component';
 		FilmListItemComponent,
 		FilmDetailComponent,
 		AboutComponent,
-		RatingComponent
+		RatingComponent,
+		HamburgerMenuComponent
 	],
 	imports: [
 		BrowserModule,
