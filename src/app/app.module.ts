@@ -13,11 +13,11 @@ import {FilmDetailComponent} from './components//film-detail/film-detail.compone
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
 
+import { FilmService } from './services/film.service';
+import { RatingComponent } from './rating/rating.component';
+import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import {AppRoutingModule} from './routers/app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
-
-import {FilmService} from './services/film.service';
-import {RatingComponent} from './rating/rating.component';
 import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
 
 @NgModule({
@@ -29,6 +29,7 @@ import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.componen
 		FilmDetailComponent,
 		AboutComponent,
 		RatingComponent,
+		AddMovieComponent,
 		HamburgerMenuComponent
 	],
 	imports: [
