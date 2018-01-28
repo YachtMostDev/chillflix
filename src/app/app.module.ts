@@ -13,15 +13,7 @@ import {FilmDetailComponent} from './components//film-detail/film-detail.compone
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
 
-import { FilmService } from './services/film.service';
-import { RatingComponent } from './rating/rating.component';
 import { ThumbsComponent } from './thumbs/thumbs.component';
-
-import {FilmService} from './services/film.service';
-import {RatingComponent} from './rating/rating.component';
-<<<<<<< HEAD
-import { ThumbsDownComponent } from './thumbs-down/thumbs-down.component';
-=======
 import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
 >>>>>>> develop
 
@@ -34,19 +26,7 @@ import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.componen
 		FilmDetailComponent,
 		AboutComponent,
 		RatingComponent,
-<<<<<<< HEAD
 		ThumbsComponent,
-		ThumbsDownComponent
-  ],
-  imports: [
-	  BrowserModule,
-  	HttpClientModule,
-    Material,
-    AppRoutingModule
-  ],
-  providers: [FilmService],
-  bootstrap: [AppComponent]
-=======
 		HamburgerMenuComponent
 	],
 	imports: [
