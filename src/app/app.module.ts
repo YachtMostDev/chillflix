@@ -19,7 +19,11 @@ import { ThumbsComponent } from './thumbs/thumbs.component';
 
 import {FilmService} from './services/film.service';
 import {RatingComponent} from './rating/rating.component';
+<<<<<<< HEAD
 import { ThumbsDownComponent } from './thumbs-down/thumbs-down.component';
+=======
+import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
+>>>>>>> develop
 
 @NgModule({
 	declarations: [
@@ -30,6 +34,7 @@ import { ThumbsDownComponent } from './thumbs-down/thumbs-down.component';
 		FilmDetailComponent,
 		AboutComponent,
 		RatingComponent,
+<<<<<<< HEAD
 		ThumbsComponent,
 		ThumbsDownComponent
   ],
@@ -41,6 +46,20 @@ import { ThumbsDownComponent } from './thumbs-down/thumbs-down.component';
   ],
   providers: [FilmService],
   bootstrap: [AppComponent]
+=======
+		HamburgerMenuComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		Material,
+		AppRoutingModule,
+		StoreModule.forRoot({ films: filmsReducer }),
+		StoreDevtoolsModule.instrument()
+	],
+	providers: [FilmService],
+	bootstrap: [AppComponent]
+>>>>>>> develop
 })
 export class AppModule {
 }

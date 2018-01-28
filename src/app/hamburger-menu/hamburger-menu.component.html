@@ -1,0 +1,62 @@
+<mat-drawer-container class="container" color="warn" autosize >
+  <mat-drawer #drawer class="sidenav" mode="push"> 
+     <div>
+      <button mat-button></button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/action']">Action</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/anime']">Anime</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/cabaret']">Cabaret</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/comedy']">Comedy</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/crime']">Crime</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/documentary']">Documentary</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/drama']">Drama</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/family']">Family</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/horror']">Horror</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/music']">Music</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/war']">War</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/romantic']">Romantic</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/sciFi']">Sci-fi</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/fantasy']">Fantasy</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/sport']">Sport</button>
+    </div>
+    <div>
+      <button mat-button [routerLink]="['/thriller']">Thriller</button>
+    </div>
+  </mat-drawer>
+
+  <div class="sidenav-content" color="warn">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon> Genres
+    </button>
+    <div class="container" onclick="myFunction(this)"></div>
+  </div>
+</mat-drawer-container>
