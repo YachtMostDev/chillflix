@@ -30,7 +30,7 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 		// if true: call state manager to add that film to the to-watch queue
 		if (this.selectedFilm != null) {
 			console.log('adding' + this.selectedFilm.id + ' to the queue');
-			this.store.select('films').dispatch({ type: ADD_TO_QUEUE, payload: this.selectedFilm.id });
+			this.store.dispatch({ type: ADD_TO_QUEUE, payload: {'id': this.selectedFilm.id } });
 		} else {
 			console.log('selected film = null, can\'t add to queue');
 		}
