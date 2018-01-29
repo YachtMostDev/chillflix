@@ -2,32 +2,23 @@
     position: fixed;
     height: 100%;
     width: 120px;
-    margin-right: 50px;
-    color: rgb(238, 238, 238);
-    display: float;
-    background-color:rgb(0, 0, 0);
+    color: white;
+    background-color: black;
     font-family: Verdana;
+	margin-left: -5px;
+	padding-left: 5px;
 }
 
 .container {
-    color:rgb(255, 255, 255);
-    background-color:rgb(0, 0, 0);
     width: 220px;
-    height: 70%;
-    display: float;
     font-size: 35px;
-    position: left;
 }
 
 .sidenav-content {
-    height: 100%;
-    width: 10px; 
-    position: right;
+	background: black;
 }
 
 .mat-button{
-    background-color:rgb(0, 0, 0);
     text-align: left;
-    border-bottom-color:  rgb(58, 1, 1);
-    border-bottom-style: ridge;
+    border-bottom: 1px rgb(58, 1, 1) ridge;
 }
