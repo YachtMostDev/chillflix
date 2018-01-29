@@ -1,0 +1,132 @@
+$animation-duration:	0.3s;
+$primary-color: rgba(218, 13, 13, 0.85);
+
+.carousel-item {
+	// flex: 1 0 180px;
+	width: 180px;
+	height: 135px;
+
+	// width: 20%;
+
+	padding: 0px 2px;
+	position: relative;
+	text-shadow: 0 1px 1px rgba(0,0,0,.5);
+	transition: width $animation-duration;
+	&:hover {
+		width: 360px;
+		.img-container {
+			width: 360px;
+			height: 270px;
+			z-index: 1000;
+			top: -67.5px;
+			//left: -105px;
+		}
+		.item-symbol{
+			opacity: 1;
+		}
+		app-film-list-item-tag{
+			opacity: 0;
+		}
+		.gradient-overlay{
+			background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+		}
+	}
+}
+
+/***** background ******/
+
+.gradient-overlay{
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.img{
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+}
+
+/***** containers ******/
+
+.img-container{
+	position: absolute;
+	overflow: auto;
+	width: 180px;
+	height: 135px;
+	margin: 0;
+	top: 0;
+	left: 0;
+	transition: all $animation-duration;
+	overflow: hidden;
+}
+
+.play-container{
+	width: 100%;
+	position: absolute;
+	height: 60%;
+	&:hover{
+		.play-button{
+			text-shadow: 0 2px 1px rgba(0,0,0,.5);
+			color: $primary-color;
+			top: calc(50% + 15px);
+			left: calc(50% - 35px);
+			font-size: 70px;
+		}
+	}
+}
+
+.details-container{
+	position: absolute;
+	top: 60%;
+	height: 40%;
+	width: 100%;
+	&:hover{
+		.details-button{
+			color: $primary-color;
+			bottom: 23%;
+			left: calc(50% - 35px);
+			font-size: 70px;
+		}
+	}
+}
+
+/***** list-item GUI elements ******/
+
+.item-symbol{
+	position: absolute;
+	opacity: 0;
+	transition: all $animation-duration;
+}
+
+.thumbnail-info{
+	top: 0;
+	left: 10px;
+	font-size: 12px;
+	width: 300px;
+}
+
+.play-button {
+	position: relative;
+	top: 50%;
+	top: calc(50% + 25px);
+	left: calc(50% - 25px);
+	font-size: 50px;
+}
+
+.details-button{
+	bottom: 15%;
+	left: calc(50% - 25px);
+	font-size: 50px;
+}
+
+app-film-list-item-tag{
+	position: absolute;
+    padding: 1px 8px;
+    bottom: 10px;
+    font-size: 11px;
+	background-color: $primary-color;
+	opacity: 1;
+	transition: all $animation-duration;
+}

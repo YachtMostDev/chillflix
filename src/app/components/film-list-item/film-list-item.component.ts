@@ -3,9 +3,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import {SELECT_FILM} from "../../state/films.actions";
 
 @Component({
-	selector: 'app-film-list-item',
-	templateUrl: './film-list-item.component.html',
-	styleUrls: ['./film-list-item.component.css']
+  selector: 'app-film-list-item',
+  templateUrl: './film-list-item.component.html',
+  styleUrls: ['./film-list-item.component.scss']
 })
 export class FilmListItemComponent implements OnInit {
 
@@ -23,13 +23,9 @@ export class FilmListItemComponent implements OnInit {
 		updateFilm["fulldescription"] = this.film.description;
 
 		if (length > maxLength) {
-
 			updateFilm.description = this.film.description.substring(0, maxLength) + '...';
 		}
 
 		this.updatedFilm = updateFilm;
-
-		console.log(this.film);
-		console.log(this.updatedFilm);
 	}
 }

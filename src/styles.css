@@ -4,8 +4,11 @@
 
 body {
 	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	color: white;
 }
 
-
-
-
+.mat-app-background {
+	width: 100%;
+	overflow-x: hidden;
+}
