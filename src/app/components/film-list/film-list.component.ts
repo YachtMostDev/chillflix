@@ -40,7 +40,9 @@ export class FilmListComponent implements OnInit {
 
 	ngOnInit() {
 		this.filmService.getAll();
-		this.allFilms = this.store.select("films").pluck("films");
+		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
+			this.allFilms = value;
+		});
 	}
 
 	previousClick(): void {

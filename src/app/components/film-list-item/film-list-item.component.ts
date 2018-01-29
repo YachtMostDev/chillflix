@@ -23,7 +23,6 @@ export class FilmListItemComponent implements OnInit {
 		updateFilm["fulldescription"] = this.film.description;
 
 		if (length > maxLength) {
-
 			updateFilm.description = this.film.description.substring(0, maxLength) + '...';
 		}
 
