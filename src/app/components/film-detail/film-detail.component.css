@@ -1,7 +1,6 @@
-.myclass {
-	background: black;
-	height: 100%;
-}
+mat-chip {
+	max-width: 200px;
+  }
 
 .img {
 	width: 100%;

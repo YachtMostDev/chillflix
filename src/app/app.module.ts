@@ -12,7 +12,6 @@ import {FilmListItemComponent} from './components//film-list-item/film-list-item
 import {FilmDetailComponent} from './components//film-detail/film-detail.component';
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
-
 import { FilmService } from './services/film.service';
 import { RatingComponent } from './rating/rating.component';
 import { FilmsComponent } from './components/films/films.component';
@@ -21,6 +20,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {HamburgerMenuComponent} from './hamburger-menu/hamburger-menu.component';
 import {AddMovieComponent} from './components/add-movie/add-movie.component';
 import {AppRoutingModule} from './routers/app-routing.module';
+import {ThumbsUpComponent} from './components/thumbs-up/thumbs-up.component';
+import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import {AppRoutingModule} from './routers/app-routing.module';
 	FilmsComponent,
 	FilmListItemTagComponent,
 	AddMovieComponent,
-	HamburgerMenuComponent
+	HamburgerMenuComponent,
+	ThumbsDownComponent,
+	ThumbsUpComponent
   ],
   imports: [
 	BrowserModule,
