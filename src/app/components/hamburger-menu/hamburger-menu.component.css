@@ -1,0 +1,24 @@
+.sidenav{
+    position: fixed;
+    height: 100%;
+    width: 120px;
+    color: white;
+    background-color: black;
+    font-family: Verdana;
+	margin-left: -5px;
+	padding-left: 5px;
+}
+
+.container {
+    width: 220px;
+    font-size: 35px;
+}
+
+.sidenav-content {
+	background: black;
+}
+
+.mat-button{
+    text-align: left;
+    border-bottom: 1px rgb(58, 1, 1) ridge;
+}
