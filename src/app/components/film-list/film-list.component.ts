@@ -3,7 +3,8 @@ import {
 	ElementRef,
 	Input,
 	OnInit, QueryList,
-	ViewChild, ViewChildren
+	ViewChild, ViewChildren,
+	HostListener
 } from '@angular/core';
 import {FilmService} from '../../services/film.service';
 import {Store} from '@ngrx/store';
@@ -26,6 +27,7 @@ export class FilmListComponent implements OnInit {
 	currentPage = 0;
 	length: number;
 	itemWidth: number;
+	buttonWidth = 60;
 	carouselWidth: number;
 	itemsPerPage: number;
 	nrOfPages: number;
@@ -36,6 +38,11 @@ export class FilmListComponent implements OnInit {
 
 	constructor(filmService: FilmService, private store: Store<any>) {
 		this.filmService = filmService;
+	}
+
+	@HostListener('window:resize', ['$event'])
+	onResize(event) {
+		this.calculateNewPosition();
 	}
 
 	ngOnInit() {
@@ -73,9 +80,10 @@ export class FilmListComponent implements OnInit {
 
 	calculateNewPosition() {
 		this.length = this.allFilms.length;
-		this.itemWidth = 184;
-		// this.itemWidth = this.items[0].nativeElement.offsetWidth;
-		this.carouselWidth = this.carousel.nativeElement.offsetWidth;
+		this.itemWidth = 180;
+		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
+		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
+
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
 

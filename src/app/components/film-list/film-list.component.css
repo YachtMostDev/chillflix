@@ -1,6 +1,7 @@
 .carousel {
 	position: relative;
 	margin: 10px 60px;
+	color: white;
 }
 
 h2{
@@ -16,15 +17,15 @@ h2{
 	border: none;
 	padding: 0;
 	z-index: 1500;
-	min-width: 60px;
+	min-width: 0;
 }
 
 .carousel-nav-button.previous {
-	left: -60px;
+	/* left: -60px; */
 }
 
 .carousel-nav-button.next {
-	right: -60px;
+	/* right: -60px; */
 }
 
 /**** CAROUSEL LISTR ******/
@@ -38,7 +39,7 @@ h2{
 	display:inline-flex;
 	right: 0;
 	width: 100%;
-	transition: right 0.3s;
+	transition: all 0.3s;
 	/* flex-wrap: wrap; */
 }
 
