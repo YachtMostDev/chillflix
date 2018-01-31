@@ -36,8 +36,8 @@ export class FilmListComponent implements OnInit {
 	negativeMargin = 0;
 	carouselOffset = 0;
 
-	firstChild : ElementRef;
-	lastChild : ElementRef;
+	firstChild: ElementRef;
+	lastChild: ElementRef;
 
 	allFilms;
 	filmService;
@@ -52,19 +52,19 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log(this.carousel);
+
 		this.filmService.getAll();
 		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;
 		});
 	}
 
-	ngAfterViewInit() {
-		// get first child on the page
-		this.firstChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
+	log(e) {
+		console.log(e);
+	}
 
-		// get last child on the page
-		this.lastChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
-		
+	ngAfterViewInit() {
 		this.calculateNewPosition()
 	}
 
@@ -112,27 +112,45 @@ export class FilmListComponent implements OnInit {
 		};
 
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+
+		// remove firstChild and lastChild when switching pages
 		if (this.firstChild)
 			this.renderer.removeClass(this.firstChild, "first-child");
-		
+
 		if (this.lastChild)
 			this.renderer.removeClass(this.lastChild, "last-child");
 
 		// get first child on the page
-		this.firstChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
+		this.firstChild = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
 
 		// get last child on the page
-		this.lastChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
-		if (this.firstChild)
-			this.renderer.addClass(this.firstChild, "first-child");
-		
-		console.log(this.firstChild);
+		this.lastChild = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
 
-		if (this.lastChild)
+		if (this.firstChild) {
+			this.renderer.addClass(this.firstChild, "first-child");
+
+			// add and remove class to the carousel-list if the mouse enters or leaves the first-child
+			// pushes the list tot the right by 0px
+			let firstChildMouseEnter = this.renderer.listen(this.firstChild, 'mouseenter', () => {
+				this.renderer.addClass(this.carouselList.nativeElement, "first-child-hover");
+			})
+			let firstChildMouseLeave = this.renderer.listen(this.firstChild, 'mouseleave', () => {
+				this.renderer.removeClass(this.carouselList.nativeElement, "first-child-hover");
+			})
+		};
+
+		if (this.lastChild){
 			this.renderer.addClass(this.lastChild, "last-child");
-		
-		console.log(this.lastChild);
-		
+
+			// add and remove class to the carousel-list if the mouse enters or leaves the last-child
+			// pushes the list tot the right by 180px
+			let lastChildMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
+				this.renderer.addClass(this.carouselList.nativeElement, "last-child-hover");
+			})
+			let lastChildMouseLeave = this.renderer.listen(this.lastChild, 'mouseleave', () => {
+				this.renderer.removeClass(this.carouselList.nativeElement, "last-child-hover");
+			})
+		}
 
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();

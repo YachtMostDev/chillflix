@@ -4,7 +4,7 @@
 </div>
 <div #carousel class="carousel" [ngStyle]="{'margin-left': buttonWidth + 'px','margin-right': buttonWidth + 'px'}">
 	<div class="carousel-content">
-		<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px', 'right': carouselOffset + 'px'}">
+		<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
 			<app-film-list-item
 				*ngFor='let film of allFilms'
 				[film]='film'

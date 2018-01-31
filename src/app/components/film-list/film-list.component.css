@@ -11,10 +11,6 @@ app-film-list-item{
 	transition: right 0.3s;
 }
 
-.last-child:hover{
-	right: 180px;
-}
-
 /****** CAROUSEL NAV *****/
 .carousel-nav-button.previous, .carousel-nav-button.next {
 	position: absolute;
@@ -51,14 +47,17 @@ app-film-list-item{
 }
 
 /* middle list-items */
-/* .carousel-list:hover{
+.carousel-list:hover{
 	right: 90px;
-} */
+}
 
-/* right list-item */
-/* .carousel-list:hover{
-	right: 180px;
-} */
+.first-child-hover{
+	right: 0 !important;
+}
+
+.last-child-hover{
+	right: 180px !important;
+}
 
 /********* SPINNER *********/
 .spinner-holder {
