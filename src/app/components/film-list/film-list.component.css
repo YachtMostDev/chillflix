@@ -4,8 +4,15 @@
 	color: white;
 }
 
-h2{
-	margin: 40px 60px 0 60px;
+app-film-list-item{
+	position: relative;
+	right: 0px;
+	padding: 0 2px;
+	transition: right 0.3s;
+}
+
+.last-child:hover{
+	right: 180px;
 }
 
 /****** CAROUSEL NAV *****/
@@ -38,7 +45,7 @@ h2{
 	position: relative;
 	display:inline-flex;
 	right: 0;
-	width: 100%;
+	/* width: 100%; */
 	transition: all 0.3s;
 	/* flex-wrap: wrap; */
 }
@@ -49,9 +56,9 @@ h2{
 } */
 
 /* right list-item */
-.carousel-list:hover{
+/* .carousel-list:hover{
 	right: 180px;
-}
+} */
 
 /********* SPINNER *********/
 .spinner-holder {

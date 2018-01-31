@@ -4,12 +4,13 @@ import {
 	Input,
 	OnInit, QueryList,
 	ViewChild, ViewChildren,
-	HostListener
+	HostListener,
+	Renderer2
 } from '@angular/core';
-import {FilmService} from '../../services/film.service';
-import {Store} from '@ngrx/store';
+import { FilmService } from '../../services/film.service';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/pluck';
-import {SELECT_FILM} from "../../state/films.actions";
+import { SELECT_FILM } from "../../state/films.actions";
 
 @Component({
 	selector: 'app-film-list',
@@ -20,7 +21,8 @@ export class FilmListComponent implements OnInit {
 	@Input() title;
 
 	@ViewChild('carousel') carousel: ElementRef;
-	@ViewChildren('item', {read: ElementRef}) items: QueryList<ElementRef>;
+	@ViewChild('carouselList') carouselList: ElementRef;
+	@ViewChildren('item', { read: ElementRef }) items: QueryList<ElementRef>;
 
 	previousVisible = false;
 	nextVisible = true;
@@ -32,11 +34,15 @@ export class FilmListComponent implements OnInit {
 	itemsPerPage: number;
 	nrOfPages: number;
 	negativeMargin = 0;
+	carouselOffset = 0;
+
+	firstChild : ElementRef;
+	lastChild : ElementRef;
 
 	allFilms;
 	filmService;
 
-	constructor(filmService: FilmService, private store: Store<any>) {
+	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
 		this.filmService = filmService;
 	}
 
@@ -52,8 +58,19 @@ export class FilmListComponent implements OnInit {
 		});
 	}
 
+	ngAfterViewInit() {
+		// get first child on the page
+		this.firstChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
+
+		// get last child on the page
+		this.lastChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
+		
+		this.calculateNewPosition()
+	}
+
 	previousClick(): void {
-		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		//maybe fixed by ngAfterViewInit?
+		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage > 0) {
 			this.currentPage--;
 			this.calculateNewPosition();
@@ -62,7 +79,8 @@ export class FilmListComponent implements OnInit {
 	}
 
 	nextClick(): void {
-		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		//maybe fixed by ngAfterViewInit?
+		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage < this.nrOfPages) {
 			this.currentPage++;
 			this.calculateNewPosition();
@@ -78,14 +96,43 @@ export class FilmListComponent implements OnInit {
 		this.nextVisible = this.currentPage < this.nrOfPages - 1;
 	}
 
+	// A lot of operations in this method only have to happen if the itemsPerPage amount changes
+	// It also can be a lot more efficient, like a lot
 	calculateNewPosition() {
 		this.length = this.allFilms.length;
-		this.itemWidth = 180;
+		this.itemWidth = 184;
 		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
 		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
-
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
+
+		//Change the amount of items on a page so buttons don't become to small
+		if (this.buttonWidth < 30) {
+			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
+			this.itemsPerPage = this.itemsPerPage - 1;
+		};
+
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+		if (this.firstChild)
+			this.renderer.removeClass(this.firstChild, "first-child");
+		
+		if (this.lastChild)
+			this.renderer.removeClass(this.lastChild, "last-child");
+
+		// get first child on the page
+		this.firstChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
+
+		// get last child on the page
+		this.lastChild  = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
+		if (this.firstChild)
+			this.renderer.addClass(this.firstChild, "first-child");
+		
+		console.log(this.firstChild);
+
+		if (this.lastChild)
+			this.renderer.addClass(this.lastChild, "last-child");
+		
+		console.log(this.lastChild);
+		
 
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();
