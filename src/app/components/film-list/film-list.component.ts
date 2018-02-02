@@ -4,25 +4,33 @@ import {
 	Input,
 	OnInit, QueryList,
 	ViewChild, ViewChildren,
+	AfterViewInit,
 	HostListener,
 	Renderer2
 } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/pluck';
+import 'rxjs/add/operator/pluck';	
 import { SELECT_FILM } from "../../state/films.actions";
+import { FilmDetailComponent } from '../film-detail/film-detail.component';
 
 @Component({
 	selector: 'app-film-list',
 	templateUrl: './film-list.component.html',
 	styleUrls: ['./film-list.component.css']
 })
-export class FilmListComponent implements OnInit {
+
+export class FilmListComponent implements OnInit, AfterViewInit {
 	@Input() title;
 
 	@ViewChild('carousel') carousel: ElementRef;
 	@ViewChild('carouselList') carouselList: ElementRef;
 	@ViewChildren('item', { read: ElementRef }) items: QueryList<ElementRef>;
+
+	@ViewChild(FilmDetailComponent) filmDetail : FilmDetailComponent;
+	// set detail(directive: FilmDetailComponent) {
+	//   this.film = directive.film;
+	// };
 
 	previousVisible = false;
 	nextVisible = true;
@@ -52,6 +60,8 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		
+		console.log(this.filmDetail);
 		console.log(this.carousel);
 
 		this.filmService.getAll();
@@ -66,7 +76,7 @@ export class FilmListComponent implements OnInit {
 
 	ngAfterViewInit() {
 		this.calculateNewPosition()
-	}
+			}
 
 	previousClick(): void {
 		//maybe fixed by ngAfterViewInit?
