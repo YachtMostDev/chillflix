@@ -1,0 +1,16 @@
+<input #searchBox id="search-film" (keyup)="search(film)" />
+<app-search-menu
+				*ngFor='let film of allFilms'
+				[film]='film'
+				[routerLink]="['/films', film.id]"
+				#item
+				(click)="search(film)"
+				class="search-film"
+			>
+</app-search-menu>
+
+	<!-- <div *ngFor="let film of allFilms | async" (click)="search(film)" class="search-film">
+		{{ film.id }}
+	</div> -->
+
+

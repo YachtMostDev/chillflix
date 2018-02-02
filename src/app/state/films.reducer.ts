@@ -1,6 +1,6 @@
 import {
 	LOAD_FILMS, SELECT_FILM, DESELECT_FILM, RATING_PLUS, RATING_MINUS, SET_VIEW,
-	RATING_RESET, ADD_TO_QUEUE, REMOVE_FROM_QUEUE
+	RATING_RESET, ADD_TO_QUEUE, REMOVE_FROM_QUEUE, SEARCH_FILM
 } from './films.actions';
 
 const initialState = {
@@ -38,6 +38,9 @@ export const filmsReducer = (state = initialState,
 				queue: state.queue.filter(id => id !== action.payload.id),
 				films: state.films.map(film => (film.id === action.payload.id) ? {...film, inQueue: false} : film)
 		};
+		case SEARCH_FILM:
+		return {...state, selectedFilm: action.payload.id
+	};
 		default:
 			return state;
 	}

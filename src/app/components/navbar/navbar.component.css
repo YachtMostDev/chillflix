@@ -1,7 +1,5 @@
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
-
 .title{
-    font-size: 45px; 
+    font-size: 45px;
     font-family: Verdana;
     position: left;
     padding-left: 10px;
@@ -21,8 +19,4 @@
     border-bottom-color: rgb(58, 1, 1);
     border-bottom-style: ridge;
     color: rgb(201, 201, 201);
-}
-
-.input-group-btn{
-	float: right;
 }

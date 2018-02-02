@@ -15,16 +15,5 @@
       <button mat-button [routerLink]="['/myList']">My List</button>
     </div>
   </ul>
-
-	<div class="input-group-search">
-		<input id="inputSearchFilms" type="search" ng-model="filterFilms" class="form-control shortInputSearch" placeholder="Search a film">
-		<div class="input-group-btn">
-			<button class="btn btn-primary" ng-click="search();">
-				<i class="glyphicon glyphicon-search"></i>
-			</button>
-			<button class="btn btn-primary" ng-click="clearSearch();">
-				<i class="glyphicon glyphicon-remove-sign"></i>
-			</button>
-		</div>
-	</div>
+	<app-search-menu></app-search-menu>
 </mat-toolbar>
