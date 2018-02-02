@@ -7,4 +7,4 @@ export const RATING_RESET = 'RATING_RESET';
 export const SET_VIEW = 'SET_VIEW';
 export const ADD_TO_QUEUE = 'ADD_TO_QUEUE';
 export const REMOVE_FROM_QUEUE = 'REMOVE_FROM_QUEUE';
-export const SEARCH_FILM = 'SEARCH_FILM';
+export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
