@@ -53,10 +53,20 @@ app-film-list-item{
 
 .first-child-hover{
 	right: 0 !important;
+	color: blue;
+}
+
+.first-child{
+	color: aqua;
+}
+
+.last-child{
+	color: crimson;
 }
 
 .last-child-hover{
 	right: 180px !important;
+	color: red;
 }
 
 /********* SPINNER *********/
