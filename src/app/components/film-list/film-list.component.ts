@@ -66,7 +66,7 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-		this.calculateNewPosition()
+		this.calculateNewPosition();
 	}
 
 	previousClick(): void {
@@ -83,7 +83,7 @@ export class FilmListComponent implements OnInit {
 	nextClick(): void {
 		//maybe fixed by ngAfterViewInit?
 		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
-		if (this.currentPage < this.nrOfPages) {
+		if (this.currentPage < this.nrOfPages - 1) {
 			this.currentPage++;
 			this.calculateNewPosition();
 			this.changeList();
@@ -99,21 +99,24 @@ export class FilmListComponent implements OnInit {
 		this.nextVisible = this.currentPage < this.nrOfPages - 1;
 	}
 
-	// A lot of operations in this method only have to happen if the itemsPerPage amount changes
 	calculateNewPosition() {
 		this.length = this.allFilms.length;
 		this.itemWidth = 184;
 		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
 
-		//Change the amount of items on a page so buttons don't become to small
-		if (this.buttonWidth < 30) {
+		let itemCheck = this.itemsPerPage;
+
+		// change the amount of items on a page so buttons don't become to small
+		if (this.buttonWidth < 30)
 			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
-			this.changeList();
-		}
 
 		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
+
+		// check if the amount of items in the list has changed
+		if (itemCheck !== this.itemsPerPage)
+			this.changeList();
 
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();
@@ -130,15 +133,8 @@ export class FilmListComponent implements OnInit {
 
 		// get last child on the page
 		this.lastChild = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
-		console.log(this.firstChild);
 
 		this.changeListItem();
-	}
-
-	// delete a class from a DOM element
-	removeClass(listItem: ElementRef, itemName: string) {
-		if (listItem)
-			this.renderer.removeClass(listItem, itemName);
 	}
 
 	// reset the events on the list-items
@@ -146,7 +142,7 @@ export class FilmListComponent implements OnInit {
 		if (this.firstChild) {
 			this.renderer.addClass(this.firstChild, "first-child");
 
-			// remove eventlistener if it exists
+			// delete eventlistener if it exists
 			if (this.firstMouseEnter)
 				this.firstMouseEnter();
 
@@ -170,7 +166,7 @@ export class FilmListComponent implements OnInit {
 			if (this.lastMouseLeave)
 				this.lastMouseLeave();
 
-				//add eventlisteners to the last-child element
+			//add eventlisteners to the last-child element
 			this.lastMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "last-child-hover");
 			});
@@ -178,6 +174,12 @@ export class FilmListComponent implements OnInit {
 				this.renderer.removeClass(this.carouselList.nativeElement, "last-child-hover");
 			});
 		}
+	}
+
+	// delete a class from a DOM element
+	removeClass(listItem: ElementRef, itemName: string) {
+		if (listItem)
+			this.renderer.removeClass(listItem, itemName);
 	}
 
 	select(film) {
