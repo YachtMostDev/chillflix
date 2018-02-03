@@ -57,8 +57,6 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log(this.carousel);
-
 		this.filmService.getAll();
 		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;
@@ -106,7 +104,7 @@ export class FilmListComponent implements OnInit {
 
 		let itemCheck = this.itemsPerPage;
 
-		// change the amount of items on a page so buttons don't become to small
+		// change the amount of items on a page so buttons don't become too small
 		if (this.buttonWidth < 30)
 			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
 
