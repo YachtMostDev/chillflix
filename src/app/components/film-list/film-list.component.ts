@@ -39,11 +39,6 @@ export class FilmListComponent implements OnInit {
 	firstChild: ElementRef;
 	lastChild: ElementRef;
 
-	firstMouseEnter;
-	lastMouseEnter;
-	firstMouseLeave;
-	lastMouseLeave;
-
 	allFilms;
 	filmService;
 
@@ -65,6 +60,10 @@ export class FilmListComponent implements OnInit {
 		});
 	}
 
+	log(e) {
+		console.log(e);
+	}
+
 	ngAfterViewInit() {
 		this.calculateNewPosition()
 	}
@@ -75,7 +74,6 @@ export class FilmListComponent implements OnInit {
 		if (this.currentPage > 0) {
 			this.currentPage--;
 			this.calculateNewPosition();
-			this.changeList();
 		}
 		console.log('Going to previous page: ' + this.currentPage);
 	}
@@ -86,7 +84,6 @@ export class FilmListComponent implements OnInit {
 		if (this.currentPage < this.nrOfPages) {
 			this.currentPage++;
 			this.calculateNewPosition();
-			this.changeList();
 		}
 		console.log('Going to next page: ' + this.currentPage);
 	}
@@ -100,84 +97,64 @@ export class FilmListComponent implements OnInit {
 	}
 
 	// A lot of operations in this method only have to happen if the itemsPerPage amount changes
+	// It also can be a lot more efficient, like a lot
 	calculateNewPosition() {
 		this.length = this.allFilms.length;
 		this.itemWidth = 184;
 		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
+		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
+		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 
 		//Change the amount of items on a page so buttons don't become to small
 		if (this.buttonWidth < 30) {
 			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
-			this.changeList();
-		}
+			this.itemsPerPage = this.itemsPerPage - 1;
+		};
 
-		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
-		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
 
-		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
-		this.calcNextVisible();
-		this.calcPreviousVisible();
-	}
+		// remove firstChild and lastChild when switching pages
+		if (this.firstChild)
+			this.renderer.removeClass(this.firstChild, "first-child");
 
-	// change the first and last items on the list place
-	changeList() {
-		this.removeClass(this.firstChild, "first-child");
-		this.removeClass(this.lastChild, "last-child");
+		if (this.lastChild)
+			this.renderer.removeClass(this.lastChild, "last-child");
 
 		// get first child on the page
 		this.firstChild = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - this.itemsPerPage];
 
 		// get last child on the page
 		this.lastChild = this.carouselList.nativeElement.children[((this.currentPage + 1) * this.itemsPerPage) - 1];
-		console.log(this.firstChild);
 
-		this.changeListItem();
-	}
-
-	// delete a class from a DOM element
-	removeClass(listItem: ElementRef, itemName: string) {
-		if (listItem)
-			this.renderer.removeClass(listItem, itemName);
-	}
-
-	// reset the events on the list-items
-	changeListItem() {
 		if (this.firstChild) {
 			this.renderer.addClass(this.firstChild, "first-child");
 
-			// remove eventlistener if it exists
-			if (this.firstMouseEnter)
-				this.firstMouseEnter();
-
-			if (this.firstMouseLeave)
-				this.firstMouseLeave();
-
-			//add eventlisteners to the first-child element
-			this.firstMouseEnter = this.renderer.listen(this.firstChild, 'mouseenter', () => {
+			// add and remove class to the carousel-list if the mouse enters or leaves the first-child
+			// pushes the list tot the right by 0px
+			let firstChildMouseEnter = this.renderer.listen(this.firstChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "first-child-hover");
-			});
-			this.firstMouseLeave = this.renderer.listen(this.firstChild, 'mouseleave', () => {
+			})
+			let firstChildMouseLeave = this.renderer.listen(this.firstChild, 'mouseleave', () => {
 				this.renderer.removeClass(this.carouselList.nativeElement, "first-child-hover");
-			});
-		}
-		if (this.lastChild) {
+			})
+		};
+
+		if (this.lastChild){
 			this.renderer.addClass(this.lastChild, "last-child");
 
-			if (this.lastMouseEnter)
-				this.lastMouseEnter();
-
-			if (this.lastMouseLeave)
-				this.lastMouseLeave();
-
-				//add eventlisteners to the last-child element
-			this.lastMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
+			// add and remove class to the carousel-list if the mouse enters or leaves the last-child
+			// pushes the list tot the right by 180px
+			let lastChildMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "last-child-hover");
-			});
-			this.lastMouseLeave = this.renderer.listen(this.lastChild, 'mouseleave', () => {
+			})
+			let lastChildMouseLeave = this.renderer.listen(this.lastChild, 'mouseleave', () => {
 				this.renderer.removeClass(this.carouselList.nativeElement, "last-child-hover");
-			});
+			})
 		}
+
+		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
+		this.calcNextVisible();
+		this.calcPreviousVisible();
 	}
 
 	select(film) {
