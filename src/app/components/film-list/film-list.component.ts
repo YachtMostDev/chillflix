@@ -38,7 +38,6 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	itemsPerPage: number;
 	nrOfPages: number;
 	negativeMargin = 0;
-	carouselOffset = 0;
 
 	firstChild: ElementRef;
 	lastChild: ElementRef;
@@ -51,7 +50,6 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	allFilms;
 
 	constructor(private filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
-
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -63,7 +61,9 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 		console.log(this.carousel);
 
 		this.store.select('films').pluck('selectedFilm').subscribe(value => {
-			if (!value) this.opened = false;
+			if (!value) {
+				this.opened = false;
+			}
 		})
 		this.filmService.getAll();
 		this.store.select("films").pluck("films").subscribe((value) => {
@@ -76,7 +76,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	}
 
 	previousClick(): void {
-		//maybe fixed by ngAfterViewInit?
+		// maybe fixed by ngAfterViewInit?
 		// nope, it broke again
 		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage > 0) {
@@ -88,7 +88,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	}
 
 	nextClick(): void {
-		//maybe fixed by ngAfterViewInit?
+		// maybe fixed by ngAfterViewInit?
 		// nope, it broke again
 		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage < this.nrOfPages - 1) {
@@ -114,19 +114,21 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 		this.itemWidth = 184;
 		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
 
-		let itemCheck = this.itemsPerPage;
+		const itemCheck = this.itemsPerPage;
 
 		// change the amount of items on a page so buttons don't become too small
-		if (this.buttonWidth < 30)
+		if (this.buttonWidth < 30) {
 			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
+		}
 
 		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
 
 		// check if the amount of items in the list has changed
-		if (itemCheck !== this.itemsPerPage)
+		if (itemCheck !== this.itemsPerPage) {
 			this.changeList();
+		}
 
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();
@@ -153,13 +155,15 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 			this.renderer.addClass(this.firstChild, "first-child");
 
 			// delete eventlistener if it exists
-			if (this.firstMouseEnter)
+			if (this.firstMouseEnter) {
 				this.firstMouseEnter();
+			}
 
-			if (this.firstMouseLeave)
+			if (this.firstMouseLeave) {
 				this.firstMouseLeave();
+			}
 
-			//add eventlisteners to the first-child element
+			// add eventlisteners to the first-child element
 			this.firstMouseEnter = this.renderer.listen(this.firstChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "first-child-hover");
 			});
@@ -170,13 +174,15 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 		if (this.lastChild) {
 			this.renderer.addClass(this.lastChild, "last-child");
 
-			if (this.lastMouseEnter)
+			if (this.lastMouseEnter) {
 				this.lastMouseEnter();
+			}
 
-			if (this.lastMouseLeave)
+			if (this.lastMouseLeave) {
 				this.lastMouseLeave();
+			}
 
-			//add eventlisteners to the last-child element
+			// add eventlisteners to the last-child element
 			this.lastMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "last-child-hover");
 			});
@@ -188,8 +194,9 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 
 	// delete a class from a DOM element
 	removeClass(listItem: ElementRef, itemName: string) {
-		if (listItem)
+		if (listItem) {
 			this.renderer.removeClass(listItem, itemName);
+		}
 	}
 
 	// waarom verandert deze methode de hele lijst!?
