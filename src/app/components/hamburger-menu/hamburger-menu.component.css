@@ -22,3 +22,7 @@
     text-align: left;
     border-bottom: 1px rgb(58, 1, 1) ridge;
 }
+
+.mat-button:hover{
+    background-color: rgb(58, 1, 1);
+}

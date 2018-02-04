@@ -1,7 +1,7 @@
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+/*@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");*/
 
 .title{
-    font-size: 45px; 
+    font-size: 45px;
     font-family: Verdana;
     position: left;
     padding-left: 10px;
@@ -13,6 +13,10 @@
     background-color:rgb(0, 0, 0);
     padding-right: 300px;
     padding-left: 5px;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    top: 0px;
 }
 
 .mat-button{
@@ -21,6 +25,10 @@
     border-bottom-color: rgb(58, 1, 1);
     border-bottom-style: ridge;
     color: rgb(201, 201, 201);
+}
+
+.mat-button:hover{
+    background-color: rgb(58, 1, 1);
 }
 
 .input-group-btn{
