@@ -1,10 +1,14 @@
 .carousel {
 	position: relative;
 	margin: 10px 60px;
+	color: white;
 }
 
-h2{
-	margin: 40px 60px 0 60px;
+app-film-list-item{
+	position: relative;
+	right: 0px;
+	padding: 0 2px;
+	transition: right 0.3s;
 }
 
 /****** CAROUSEL NAV *****/
@@ -16,15 +20,15 @@ h2{
 	border: none;
 	padding: 0;
 	z-index: 1500;
-	min-width: 60px;
+	min-width: 0;
 }
 
 .carousel-nav-button.previous {
-	left: -60px;
+	/* left: -60px; */
 }
 
 .carousel-nav-button.next {
-	right: -60px;
+	/* right: -60px; */
 }
 
 /**** CAROUSEL LISTR ******/
@@ -37,19 +41,22 @@ h2{
 	position: relative;
 	display:inline-flex;
 	right: 0;
-	width: 100%;
-	transition: right 0.3s;
+	/* width: 100%; */
+	transition: all 0.3s;
 	/* flex-wrap: wrap; */
 }
 
 /* middle list-items */
-/* .carousel-list:hover{
-	right: 90px;
-} */
-
-/* right list-item */
 .carousel-list:hover{
-	right: 180px;
+	right: 90px;
+}
+
+.first-child-hover{
+	right: 0 !important;
+}
+
+.last-child-hover{
+	right: 180px !important;
 }
 
 /********* SPINNER *********/
