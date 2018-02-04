@@ -1,4 +1,4 @@
-<div class="myclass">
+<div *ngIf="film" class="myclass">
 		<div class="row">
 			<div class="column left">
 				<br>
@@ -6,12 +6,12 @@
 				<br>
 				<br>
 				<br>
-				<h1 style="color:white;">{{film.title}}</h1>
+				<h1 style="color:white;">{{film?.title}}</h1>
 				<h3 style="color:grey;">
-					{{film.description}}
+					{{film?.description}}
 				</h3>
 				<h4 style="color:white;">
-					Views: &emsp;  {{film.watched}}
+					Views: &emsp;  {{film?.watched}}
 				</h4>
 
 				<h4 style="color:white;">
@@ -20,7 +20,7 @@
 				
 				<mat-chip-list>
 					<mat-chip>
-						{{film.categories}}
+						{{film?.categories}}
 					</mat-chip>
 				</mat-chip-list>
 				
@@ -32,10 +32,10 @@
 			</div>	
 	
 			<div *ngIf="film" class="column right">
-					<button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;">Close</button>
+					<button mat-raised-button [color]="'primary'" (click)="deselect()" style="float: right;">Close</button>
 				<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
 			</div>
 		
 		</div>
 	</div>
-	<mat-spinner *ngIf="!film" class="spinner"></mat-spinner>
+	<!--<mat-spinner *ngIf="!film" class="spinner"></mat-spinner>-->

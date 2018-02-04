@@ -6,7 +6,7 @@ import {
 	ViewChild, ViewChildren,
 	AfterViewInit,
 	HostListener,
-	Renderer2
+	Renderer
 } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Store } from '@ngrx/store';
@@ -27,11 +27,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	@ViewChild('carouselList') carouselList: ElementRef;
 	@ViewChildren('item', { read: ElementRef }) items: QueryList<ElementRef>;
 
-	@ViewChild(FilmDetailComponent) filmDetail : FilmDetailComponent;
-	// set detail(directive: FilmDetailComponent) {
-	//   this.film = directive.film;
-	// };
-
+	opened = false;
 	previousVisible = false;
 	nextVisible = true;
 	currentPage = 0;
@@ -50,7 +46,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	allFilms;
 	filmService;
 
-	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
+	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer) {
 		this.filmService = filmService;
 	}
 
@@ -61,9 +57,11 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 
 	ngOnInit() {
 		
-		console.log(this.filmDetail);
 		console.log(this.carousel);
 
+		this.store.select('films').pluck('selectedFilm').subscribe(value => {
+			if(!value) this.opened = false;
+		})
 		this.filmService.getAll();
 		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;
@@ -168,6 +166,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	}
 
 	select(film) {
+		this.opened = true;
 		this.store.dispatch({
 			type: SELECT_FILM,
 			payload: film
