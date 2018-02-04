@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import {FilmService } from '../../services/film.service';
+
 
 @Component({
   selector: 'app-thumbs-down',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThumbsDownComponent implements OnInit {
 
-  constructor() { }
+  private selectedFilm;
+	private subscription;
+
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
   }
 
+  thumbsDownClick() {
+    this.filmService.setRating (this.selectedFilm, -1);
+  }
 }
