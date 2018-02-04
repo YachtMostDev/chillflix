@@ -15,14 +15,14 @@
 	</div>
 	<div class="carousel-nav">
 		<!--<div *ngIf="previousVisible">-->
-			<button mat-button class="carousel-nav-button previous" (click)="previousClick()">
-				<mat-icon>navigate_before</mat-icon>
-			</button>
+		<button mat-button class="carousel-nav-button previous" (click)="previousClick()" [ngStyle]="{'width': buttonWidth + 'px','left': -buttonWidth + 'px'}">
+			<mat-icon>navigate_before</mat-icon>
+		</button>
 		<!--</div>-->
 		<!--<div *ngIf="nextVisible">-->
-			<button mat-button class="carousel-nav-button next" (click)="nextClick()">
-				<mat-icon>navigate_next</mat-icon>
-			</button>
+		<button mat-button class="carousel-nav-button next" (click)="nextClick()" [ngStyle]="{'width': buttonWidth + 'px','right': -buttonWidth + 'px'}">
+			<mat-icon>navigate_next</mat-icon>
+		</button>
 		<!--</div>-->
 	</div>
 </div>

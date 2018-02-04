@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/pluck';	
+import 'rxjs/add/operator/pluck';
 import { SELECT_FILM } from "../../state/films.actions";
 import { FilmDetailComponent } from '../film-detail/film-detail.component';
 
@@ -51,7 +51,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	allFilms;
 
 	constructor(private filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
-		
+
 	}
 
 	@HostListener('window:resize', ['$event'])
@@ -60,11 +60,10 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	}
 
 	ngOnInit() {
-		
 		console.log(this.carousel);
 
 		this.store.select('films').pluck('selectedFilm').subscribe(value => {
-			if(!value) this.opened = false;
+			if (!value) this.opened = false;
 		})
 		this.filmService.getAll();
 		this.store.select("films").pluck("films").subscribe((value) => {
@@ -73,12 +72,13 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.calculateNewPosition()
+		this.calculateNewPosition();
 	}
 
 	previousClick(): void {
 		//maybe fixed by ngAfterViewInit?
-		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		// nope, it broke again
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage > 0) {
 			this.currentPage--;
 			this.calculateNewPosition();
@@ -89,8 +89,9 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 
 	nextClick(): void {
 		//maybe fixed by ngAfterViewInit?
-		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
-		if (this.currentPage < this.nrOfPages -1) {
+		// nope, it broke again
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		if (this.currentPage < this.nrOfPages - 1) {
 			this.currentPage++;
 			this.calculateNewPosition();
 			this.changeList();
@@ -191,6 +192,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 			this.renderer.removeClass(listItem, itemName);
 	}
 
+	// waarom verandert deze methode de hele lijst!?
 	select(film) {
 		this.opened = true;
 		this.store.dispatch({
