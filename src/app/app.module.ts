@@ -22,7 +22,8 @@ import {AddMovieComponent} from './components/add-movie/add-movie.component';
 import {AppRoutingModule} from './routers/app-routing.module';
 import {ThumbsUpComponent} from './components/thumbs-up/thumbs-up.component';
 import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.component';
-import {SearchMenuComponent} from './components/search-menu/search-menu.component';
+import { SearchMenuComponent } from './components/search-menu/search-menu.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {SearchMenuComponent} from './components/search-menu/search-menu.componen
 	HamburgerMenuComponent,
 	ThumbsDownComponent,
 	ThumbsUpComponent,
-	SearchMenuComponent
+	SearchMenuComponent,
+	SearchFilterPipe
   ],
   imports: [
 	BrowserModule,

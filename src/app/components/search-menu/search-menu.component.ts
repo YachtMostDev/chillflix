@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { SET_SEARCH_VALUE } from "../../state/films.actions";
+import { SET_SEARCH_VALUE, SELECT_FILM, LOAD_FILMS } from "../../state/films.actions";
 import { Store } from '@ngrx/store';
+import { SelectControlValueAccessor } from '@angular/forms/src/directives/select_control_value_accessor';
 
 @Component({
 	selector: 'app-search-menu',

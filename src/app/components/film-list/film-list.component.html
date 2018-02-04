@@ -6,7 +6,7 @@
 	<div class="carousel-content">
 		<div class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
 			<app-film-list-item
-				*ngFor='let film of allFilms'
+				*ngFor='let film of allFilms | searchFilter | async'
 				[film]='film'
 				[routerLink]="['/films', film.id]"
 				#item
