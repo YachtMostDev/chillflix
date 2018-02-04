@@ -24,17 +24,25 @@
     top: 0px;
 }
 
+.button-container{
+    height: 100%;
+}
+
 .mat-button{
     font-family: Verdana;
-    font-size:20px;
+    font-size:14px;
     border-bottom-color: rgb(58, 1, 1);
-    border-bottom-style: ridge;
+    border-bottom-style: inset;
+    border-bottom-width: 5px;
     color: rgb(201, 201, 201);
     transition: all 0.2s;
+    height: 100%;
 }
 
 .mat-button:hover{
     background-color: rgb(58, 1, 1);
+    border-bottom-color:rgb(238, 0, 0);
+    border-bottom-width: 10px;
     color: white;
 }
 
