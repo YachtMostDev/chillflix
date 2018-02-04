@@ -16,15 +16,18 @@ mat-chip {
 	clear: both;
 	padding: 40px;
 }
+.left, .right {
+	padding-bottom: 50px;
+	width: 48%;
+}
+
 
 .left {
 	float: left;
-	width: 48%;
 }
 
 .right {
 	float: right;
-	width: 48%;
 }
 
 .film-detail-title {
@@ -42,3 +45,5 @@ mat-chip {
 .app-add-movie {
 	margin-top: 20px;
 }
+
+

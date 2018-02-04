@@ -1,6 +1,11 @@
 <div *ngIf="film" class="film-details">
 	<div class="film-details-header">
-		<button mat-raised-button [color]="'primary'" (click)="deselect()" style="float: right;">Close</button>
+		<button
+			mat-raised-button
+			[color]="'primary'"
+			(click)="close()"
+			style="float: right;"
+		>Close</button>
 	</div>
 	<div class="film-detail-content">
 		<div class="left">
@@ -29,7 +34,9 @@
 		</div>
 
 		<div *ngIf="film" class="right">
-			<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
+			<app-youtube-video class="video"
+				[url]="film?.embed"
+			></app-youtube-video>
 		</div>
 	</div>
 	<div class="clear"></div>

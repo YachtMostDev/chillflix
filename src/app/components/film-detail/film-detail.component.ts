@@ -14,24 +14,16 @@ import 'rxjs/add/operator/do';
 	styleUrls: ['./film-detail.component.css']
 })
 export class FilmDetailComponent implements OnInit {
+	private film;
 
-  private film;
-
-	constructor(private route: ActivatedRoute, private filmService: FilmService, private store: Store<any>) {
-	}
+	constructor(private route: ActivatedRoute, private filmService: FilmService, private store: Store<any>) {}
 
 	ngOnInit() {
 		this.filmService.getAll();
 		this.store.select("films").subscribe(state => this.film = state.films.find(film => film.id === state.selectedFilm));
-  }
-	 
-	select() {
-		this.store.dispatch({
-			type: SELECT_FILM
-		});
 	}
 
-	deselect() {
+	close() {
 		this.store.dispatch({
 			type: DESELECT_FILM
 		});
