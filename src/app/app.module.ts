@@ -23,39 +23,41 @@ import {AddMovieComponent} from './components/add-movie/add-movie.component';
 import {AppRoutingModule} from './routers/app-routing.module';
 import {ThumbsUpComponent} from './components/thumbs-up/thumbs-up.component';
 import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.component';
+import { SearchMenuComponent } from './components/search-menu/search-menu.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import {LoginComponent} from './components/login/login.component';
 import {StorageService} from "./services/storage.service";
 import { CanActivateComponent } from './components/can-activate/can-activate.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		NavbarComponent,
-		FilmListComponent,
-		FilmListItemComponent,
-		FilmDetailComponent,
-		AboutComponent,
-		RatingComponent,
-		FilmsComponent,
-		FilmListItemTagComponent,
-		AddMovieComponent,
-		HamburgerMenuComponent,
-		ThumbsDownComponent,
-		ThumbsUpComponent,
-		LoginComponent
-	],
-	imports: [
-		BrowserModule,
-		HttpClientModule,
-		Material,
-		FormsModule,
-		ReactiveFormsModule,
-		AppRoutingModule,
-		StoreModule.forRoot({films: filmsReducer}),
-		StoreDevtoolsModule.instrument()
-	],
-	providers: [FilmService, StorageService, CanActivateComponent],
-	bootstrap: [AppComponent]
+  declarations: [
+	AppComponent,
+	NavbarComponent,
+	FilmListComponent,
+	FilmListItemComponent,
+	FilmDetailComponent,
+	AboutComponent,
+	RatingComponent,
+	FilmsComponent,
+	FilmListItemTagComponent,
+	AddMovieComponent,
+	HamburgerMenuComponent,
+	ThumbsDownComponent,
+	ThumbsUpComponent,
+	SearchMenuComponent,
+	SearchFilterPipe,
+  LoginComponent
+  ],
+  imports: [
+	BrowserModule,
+	HttpClientModule,
+	Material,
+	AppRoutingModule,
+	StoreModule.forRoot({ films: filmsReducer }),
+	StoreDevtoolsModule.instrument()
+  ],
+  providers: [FilmService, StorageService, CanActivateComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
