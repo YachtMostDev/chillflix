@@ -1,25 +1,44 @@
 mat-chip {
 	max-width: 200px;
-  }
+}
+
+.film-details {
+	background: black;
+}
 
 .img {
 	width: 100%;
-	display: float;
 	margin-left: auto;
 	margin-right: auto;
-	
 }
 
-.column {
-    float: left;
+.film-detail-content {
+	clear: both;
+	padding: 40px;
 }
 
 .left {
-	width: 50%;
-	background: black;
+	float: left;
+	width: 48%;
 }
 
 .right {
-	width: 50%;
-	background: black;
+	float: right;
+	width: 48%;
+}
+
+.film-detail-title {
+	color: white;
+}
+
+.film-detail-description {
+	color: grey;
+}
+
+.clear {
+	clear: both;
+}
+
+.app-add-movie {
+	margin-top: 20px;
 }

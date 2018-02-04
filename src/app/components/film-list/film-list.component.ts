@@ -49,8 +49,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 
 	allFilms;
 
-	constructor(private filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
-	}
+	constructor(private filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {}
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
@@ -64,7 +63,7 @@ export class FilmListComponent implements OnInit, AfterViewInit {
 			if (!value) {
 				this.opened = false;
 			}
-		})
+		});
 		this.filmService.getAll();
 		this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;

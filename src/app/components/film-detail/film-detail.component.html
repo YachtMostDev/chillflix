@@ -1,41 +1,36 @@
-<div *ngIf="film" class="myclass">
-		<div class="row">
-			<div class="column left">
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<h1 style="color:white;">{{film?.title}}</h1>
-				<h3 style="color:grey;">
-					{{film?.description}}
-				</h3>
-				<h4 style="color:white;">
-					Views: &emsp;  {{film?.watched}}
-				</h4>
+<div *ngIf="film" class="film-details">
+	<div class="film-details-header">
+		<button mat-raised-button [color]="'primary'" (click)="deselect()" style="float: right;">Close</button>
+	</div>
+	<div class="film-detail-content">
+		<div class="left">
+			<h1 class="film-detail-title">{{film?.title}}</h1>
+			<h3 class="film-detail-description">
+				{{film?.description}}
+			</h3>
+			<h4 style="color:white;">
+				Views: &emsp;  {{film?.watched}}
+			</h4>
 
-				<h4 style="color:white;">
-					Genres:&emsp;
-				</h4>
-				
-				<mat-chip-list>
-					<mat-chip>
-						{{film?.categories}}
-					</mat-chip>
-				</mat-chip-list>
-				
-				
+			<h4 style="color:white;">
+				Genres:&emsp;
+			</h4>
+
+			<mat-chip-list>
+				<mat-chip>
+					{{film?.categories}}
+				</mat-chip>
+			</mat-chip-list>
+
+			<div class="app-add-movie">
 				<app-add-movie></app-add-movie>
-				
-				<!--THUMBS UP&DOWN HERE!-->
-							
-			</div>	
-	
-			<div *ngIf="film" class="column right">
-					<button mat-raised-button [color]="'primary'" (click)="deselect()" style="float: right;">Close</button>
-				<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
 			</div>
-		
+			<!--THUMBS UP&DOWN HERE!-->
+		</div>
+
+		<div *ngIf="film" class="right">
+			<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
 		</div>
 	</div>
-	<!--<mat-spinner *ngIf="!film" class="spinner"></mat-spinner>-->
+	<div class="clear"></div>
+</div>
