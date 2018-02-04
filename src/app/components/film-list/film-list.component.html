@@ -2,20 +2,39 @@
 <div class="pagesHolder">
 	<div class="page"></div>
 </div>
-<div #carousel class="carousel" [ngStyle]="{'margin-left': buttonWidth + 'px','margin-right': buttonWidth + 'px'}">
+<div #carousel class="carousel">
 	<div class="carousel-content">
-		<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
-			<app-film-list-item 
-				*ngFor='let film of allFilms' 
-				[film]='film' 
-				[routerLink]="['/films', film.id]" 
-				#item 
+		<div class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
+			<app-film-list-item
+				*ngFor='let film of allFilms'
+				[film]='film'
+				#item
 				(click)="select(film)">
 			</app-film-list-item>
 		</div>
 	</div>
 	<div class="carousel-nav">
 		<!--<div *ngIf="previousVisible">-->
+			<button mat-button class="carousel-nav-button previous" (click)="previousClick()">
+				<mat-icon>navigate_before</mat-icon>
+			</button>
+		<!--</div>-->
+		<!--<div *ngIf="nextVisible">-->
+			<button mat-button class="carousel-nav-button next" (click)="nextClick()">
+				<mat-icon>navigate_next</mat-icon>
+			</button>
+		<!--</div>-->
+	</div>
+</div>
+
+<!--Toevoegsel Eloy voor import details-->
+<div *ngIf="opened" class="detail">
+	<app-film-detail></app-film-detail>
+<div>
+  
+  
+  <!-- dit gaf een merge conflict met de code hierboven, geen idee welke we moeten hebben
+  
 		<button 
 		mat-button class="carousel-nav-button previous" (click)="previousClick()" [ngStyle]="{'width': buttonWidth + 'px','left': -buttonWidth + 'px'}">
 			<mat-icon>navigate_before</mat-icon>
@@ -28,3 +47,4 @@
 		<!--</div>-->
 	</div>
 </div>
+-->

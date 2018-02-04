@@ -4,26 +4,30 @@ import {
 	Input,
 	OnInit, QueryList,
 	ViewChild, ViewChildren,
+	AfterViewInit,
 	HostListener,
-	Renderer2
+	Renderer
 } from '@angular/core';
 import { FilmService } from '../../services/film.service';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/pluck';
+import 'rxjs/add/operator/pluck';	
 import { SELECT_FILM } from "../../state/films.actions";
+import { FilmDetailComponent } from '../film-detail/film-detail.component';
 
 @Component({
 	selector: 'app-film-list',
 	templateUrl: './film-list.component.html',
 	styleUrls: ['./film-list.component.css']
 })
-export class FilmListComponent implements OnInit {
+
+export class FilmListComponent implements OnInit, AfterViewInit {
 	@Input() title;
 
 	@ViewChild('carousel') carousel: ElementRef;
 	@ViewChild('carouselList') carouselList: ElementRef;
 	@ViewChildren('item', { read: ElementRef }) items: QueryList<ElementRef>;
 
+	opened = false;
 	previousVisible = false;
 	nextVisible = true;
 	currentPage = 0;
@@ -47,7 +51,7 @@ export class FilmListComponent implements OnInit {
 	allFilms;
 	filmService;
 
-	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
+	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer) {
 		this.filmService = filmService;
 	}
 
@@ -57,6 +61,10 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.store.select('films').pluck('selectedFilm').subscribe(value => {
+			if(!value) this.opened = false;
+		})
+
 		this.filmService.getAll();
 		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;
@@ -181,6 +189,7 @@ export class FilmListComponent implements OnInit {
 	}
 
 	select(film) {
+		this.opened = true;
 		this.store.dispatch({
 			type: SELECT_FILM,
 			payload: film
