@@ -23,27 +23,16 @@ app-film-list-item{
 	min-width: 0;
 }
 
-.carousel-nav-button.previous {
-	/* left: -60px; */
-}
-
-.carousel-nav-button.next {
-	/* right: -60px; */
-}
-
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
-	/*overflow: hidden;*/
 }
 
 .carousel-list {
 	position: relative;
 	display:inline-flex;
 	right: 0;
-	/* width: 100%; */
 	transition: all 0.3s;
-	/* flex-wrap: wrap; */
 }
 
 /* middle list-items */
@@ -57,19 +46,4 @@ app-film-list-item{
 
 .last-child-hover{
 	right: 180px !important;
-}
-
-/********* SPINNER *********/
-.spinner-holder {
-	margin: 25px auto;
-}
-
-.bullshit-holder {
-	text-align: center;
-	width: 100%;
-	color: white;
-}
-
-.spinner {
-	margin: 10px auto;
 }
