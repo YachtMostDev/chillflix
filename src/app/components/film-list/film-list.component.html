@@ -8,10 +8,8 @@
 			<app-film-list-item
 				*ngFor='let film of allFilms | searchFilter | async'
 				[film]='film'
-				[routerLink]="['/films', film.id]"
 				#item
-				(click)="select(film)"
-			>
+				(click)="select(film)">
 			</app-film-list-item>
 		</div>
 	</div>
@@ -28,3 +26,25 @@
 		<!--</div>-->
 	</div>
 </div>
+
+<!--Toevoegsel Eloy voor import details-->
+<div *ngIf="opened" class="detail">
+	<app-film-detail></app-film-detail>
+<div>
+  
+  
+  <!-- dit gaf een merge conflict met de code hierboven, geen idee welke we moeten hebben
+  
+		<button 
+		mat-button class="carousel-nav-button previous" (click)="previousClick()" [ngStyle]="{'width': buttonWidth + 'px','left': -buttonWidth + 'px'}">
+			<mat-icon>navigate_before</mat-icon>
+		</button>
+		<!--</div>-->
+		<!--<div *ngIf="nextVisible">-->
+		<button mat-button class="carousel-nav-button next" (click)="nextClick()" [ngStyle]="{'width': buttonWidth + 'px','right': -buttonWidth + 'px'}">
+			<mat-icon>navigate_next</mat-icon>
+		</button>
+		<!--</div>-->
+	</div>
+</div>
+-->
