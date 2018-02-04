@@ -54,7 +54,9 @@ import { CanActivateComponent } from './components/can-activate/can-activate.com
 	Material,
 	AppRoutingModule,
 	StoreModule.forRoot({ films: filmsReducer }),
-	StoreDevtoolsModule.instrument()
+	StoreDevtoolsModule.instrument(),
+	FormsModule, 
+	ReactiveFormsModule
   ],
   providers: [FilmService, StorageService, CanActivateComponent],
   bootstrap: [AppComponent]
