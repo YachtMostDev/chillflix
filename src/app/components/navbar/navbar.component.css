@@ -7,6 +7,11 @@
     padding-left: 10px;
     padding-right: 70px;
     color:rgb(172, 0, 0);
+    transition: color 0.2s;
+}
+
+.title:hover{
+    color:rgb(238, 0, 0);
 }
 
 .navbar{
@@ -25,10 +30,12 @@
     border-bottom-color: rgb(58, 1, 1);
     border-bottom-style: ridge;
     color: rgb(201, 201, 201);
+    transition: all 0.2s;
 }
 
 .mat-button:hover{
     background-color: rgb(58, 1, 1);
+    color: white;
 }
 
 .input-group-btn{
