@@ -5,16 +5,17 @@
 			[color]="'primary'"
 			(click)="close()"
 			style="float: right;"
-		>Close</button>
+		>Close
+		</button>
 	</div>
 	<div class="film-detail-content">
 		<div class="left">
-			<h1 class="film-detail-title">{{film?.title}}</h1>
+			<h1 class="film-detail-title">{{film.title}}</h1>
 			<h3 class="film-detail-description">
-				{{film?.description}}
+				{{film.description}}
 			</h3>
 			<h4 style="color:white;">
-				Views: &emsp;  {{film?.watched}}
+				Views: &emsp; {{film?.watched}}
 			</h4>
 
 			<h4 style="color:white;">
@@ -23,19 +24,20 @@
 
 			<mat-chip-list>
 				<mat-chip>
-					{{film?.categories}}
+					{{film.categories}}
 				</mat-chip>
 			</mat-chip-list>
 
 			<div class="app-add-movie">
 				<app-add-movie></app-add-movie>
+				<app-thumbs-up [film]="film"></app-thumbs-up>
+				<app-thumbs-down [film]="film"></app-thumbs-down>
 			</div>
-			<!--THUMBS UP&DOWN HERE!-->
 		</div>
 
 		<div *ngIf="film" class="right">
 			<app-youtube-video class="video"
-				[url]="film?.embed"
+							   [url]="film?.embed"
 			></app-youtube-video>
 		</div>
 	</div>
