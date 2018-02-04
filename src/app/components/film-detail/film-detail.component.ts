@@ -6,7 +6,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/find';
 import 'rxjs/add/operator/do';
-import {DESELECT_FILM} from "../../state/films.actions";
+import {DESELECT_FILM, SELECT_FILM} from "../../state/films.actions";
 
 
 @Component({
@@ -27,6 +27,11 @@ export class FilmDetailComponent implements OnInit {
 		this.store.select("films").subscribe(state => this.film = state.films.find(film => film.id === state.selectedFilm));
   }
 
+	select() {
+		this.store.dispatch({
+			type: SELECT_FILM
+		});
+	}
 	deselect() {
 		this.store.dispatch({
 			type: DESELECT_FILM

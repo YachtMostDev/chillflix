@@ -21,11 +21,28 @@
 
 .add-movie {
 	background-color: transparent;
-	color: #666;
-	border: 2px solid white;
+	/* color: #666;*/
+	border: 2px solid white; 
 }
 
-.add-movie:hover {
+.selected {
 	background-color: #444;
 	color: white;
+	border: 2px solid white;
+
+}
+
+.unselected {
+	background-color: transparent;
+	/* color: white; */
+	/* border: 1px solid white; */
+}
+
+.unselected:hover {
+	background-color: #444;
+	color: white;
+}
+.selected:hover {
+	background-color: transparent;
+
 }

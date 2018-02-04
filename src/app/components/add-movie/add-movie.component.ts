@@ -1,7 +1,9 @@
+import { REMOVE_FROM_QUEUE } from './../../state/films.actions';
 import { Store } from '@ngrx/store';
 import { ADD_TO_QUEUE } from '../../state/films.actions';
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { FilmService } from '../../services/film.service';
 
 @Component({
 	selector: 'app-add-movie',
@@ -12,7 +14,13 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 
 	private selectedFilm;
 	private subscription;
- 	constructor(private store: Store<any>) { }
+	private filmsInQueue;
+	private content;
+	private state;
+
+	private SELECTED = "selected";
+	private UNSELECTED = "unselected";
+ 	constructor(private store: Store<any>, private filmService: FilmService) { }
 
 	ngOnInit() {
 		this.subscription = this.store.select('films')
@@ -20,19 +28,49 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 			.subscribe(film => {
 				this.selectedFilm = film;
 			});
+
+		// doesn't work?
+		// const isInQueue = this.store.select("films").subscribe(
+		// 	state => this.filmsInQueue = state.films.filter(
+		// 		film => state.queue.indexOf(film.id) !== -1
+		// 	)
+		// );
+
+		const isInQueue = false;
+		if (isInQueue) {
+			this.content = "-";
+			this.state = this.SELECTED;
+		} else {
+			this.content = "+";
+			this.state = this.UNSELECTED;
+		}
 	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}
 
 	addMovieClick() {
-		// check if statemanager has selected film.
-		// if true: call state manager to add that film to the to-watch queue
-		if (this.selectedFilm != null) {
-			console.log('adding' + this.selectedFilm.id + ' to the queue');
-			this.store.dispatch({ type: ADD_TO_QUEUE, payload: {'id': this.selectedFilm.id } });
+		if (this.state === this.SELECTED) {
+			// remove from watch queue
+			this.state = this.UNSELECTED;
+			this.removeFromQueue(this.selectedFilm.id);
 		} else {
-			console.log('selected film = null, can\'t add to queue');
+			// add to watch queue
+			this.state = this.UNSELECTED;
+			this.addToQueue(this.selectedFilm.id);
 		}
+		// if (this.selectedFilm != null) {
+		// 	console.log('adding ' + this.selectedFilm + ' to the queue');
+		// 	this.store.dispatch({ type: ADD_TO_QUEUE, payload: {'id': this.selectedFilm.id } });
+		// 	this.state = this.SELECTED;
+		// } else {
+		// 	console.log('selected film = null, can\'t add to queue');
+		// }
+	}
+	addToQueue(id) {
+		this.store.dispatch({ type: ADD_TO_QUEUE, payload: { 'id': id } });
+	}
+	removeFromQueue(id) {
+		this.store.dispatch({ type: REMOVE_FROM_QUEUE, payload: { 'id': id } });
 	}
 }
