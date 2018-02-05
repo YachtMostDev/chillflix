@@ -4,6 +4,7 @@ import {
 	Input,
 	OnInit, QueryList,
 	ViewChild, ViewChildren,
+	AfterViewInit,
 	HostListener,
 	Renderer2
 } from '@angular/core';
@@ -11,19 +12,22 @@ import { FilmService } from '../../services/film.service';
 import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/pluck';
 import { SELECT_FILM } from "../../state/films.actions";
+import { FilmDetailComponent } from '../film-detail/film-detail.component';
 
 @Component({
 	selector: 'app-film-list',
 	templateUrl: './film-list.component.html',
 	styleUrls: ['./film-list.component.css']
 })
-export class FilmListComponent implements OnInit {
+
+export class FilmListComponent implements OnInit, AfterViewInit {
 	@Input() title;
 
 	@ViewChild('carousel') carousel: ElementRef;
 	@ViewChild('carouselList') carouselList: ElementRef;
 	@ViewChildren('item', { read: ElementRef }) items: QueryList<ElementRef>;
 
+	opened = false;
 	previousVisible = false;
 	nextVisible = true;
 	currentPage = 0;
@@ -34,7 +38,6 @@ export class FilmListComponent implements OnInit {
 	itemsPerPage: number;
 	nrOfPages: number;
 	negativeMargin = 0;
-	carouselOffset = 0;
 
 	firstChild: ElementRef;
 	lastChild: ElementRef;
@@ -45,11 +48,8 @@ export class FilmListComponent implements OnInit {
 	lastMouseLeave;
 
 	allFilms;
-	filmService;
 
-	constructor(filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {
-		this.filmService = filmService;
-	}
+	constructor(private filmService: FilmService, private store: Store<any>, private renderer: Renderer2) {}
 
 	@HostListener('window:resize', ['$event'])
 	onResize(event) {
@@ -57,8 +57,15 @@ export class FilmListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log(this.carousel);
+
+		this.store.select('films').pluck('selectedFilm').subscribe(value => {
+			if (!value) {
+				this.opened = false;
+			}
+		});
 		this.filmService.getAll();
-		this.allFilms = this.store.select("films").pluck("films").subscribe((value) => {
+		this.store.select("films").pluck("films").subscribe((value) => {
 			this.allFilms = value;
 		});
 	}
@@ -68,8 +75,9 @@ export class FilmListComponent implements OnInit {
 	}
 
 	previousClick(): void {
-		//maybe fixed by ngAfterViewInit?
-		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		// maybe fixed by ngAfterViewInit?
+		// nope, it broke again
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage > 0) {
 			this.currentPage--;
 			this.calculateNewPosition();
@@ -79,8 +87,9 @@ export class FilmListComponent implements OnInit {
 	}
 
 	nextClick(): void {
-		//maybe fixed by ngAfterViewInit?
-		//this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
+		// maybe fixed by ngAfterViewInit?
+		// nope, it broke again
+		this.calculateNewPosition(); // TODO: Get rid of this ugly as hell fix
 		if (this.currentPage < this.nrOfPages - 1) {
 			this.currentPage++;
 			this.calculateNewPosition();
@@ -97,24 +106,28 @@ export class FilmListComponent implements OnInit {
 		this.nextVisible = this.currentPage < this.nrOfPages - 1;
 	}
 
+	// A lot of operations in this method only have to happen if the itemsPerPage amount changes
+	// It also can be a lot more efficient, like a lot
 	calculateNewPosition() {
 		this.length = this.allFilms.length;
 		this.itemWidth = 184;
 		this.buttonWidth = (document.body.clientWidth % this.itemWidth) / 2;
 
-		let itemCheck = this.itemsPerPage;
+		const itemCheck = this.itemsPerPage;
 
 		// change the amount of items on a page so buttons don't become too small
-		if (this.buttonWidth < 30)
+		if (this.buttonWidth < 30) {
 			this.buttonWidth = this.buttonWidth + this.itemWidth / 2;
+		}
 
 		this.carouselWidth = (document.body.clientWidth - this.buttonWidth * 2);
 		this.itemsPerPage = Math.floor(this.carouselWidth / this.itemWidth);
 		this.nrOfPages = Math.ceil(this.length / this.itemsPerPage);
 
 		// check if the amount of items in the list has changed
-		if (itemCheck !== this.itemsPerPage)
+		if (itemCheck !== this.itemsPerPage) {
 			this.changeList();
+		}
 
 		this.negativeMargin = this.itemWidth * this.itemsPerPage * this.currentPage;
 		this.calcNextVisible();
@@ -141,13 +154,15 @@ export class FilmListComponent implements OnInit {
 			this.renderer.addClass(this.firstChild, "first-child");
 
 			// delete eventlistener if it exists
-			if (this.firstMouseEnter)
+			if (this.firstMouseEnter) {
 				this.firstMouseEnter();
+			}
 
-			if (this.firstMouseLeave)
+			if (this.firstMouseLeave) {
 				this.firstMouseLeave();
+			}
 
-			//add eventlisteners to the first-child element
+			// add eventlisteners to the first-child element
 			this.firstMouseEnter = this.renderer.listen(this.firstChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "first-child-hover");
 			});
@@ -158,13 +173,15 @@ export class FilmListComponent implements OnInit {
 		if (this.lastChild) {
 			this.renderer.addClass(this.lastChild, "last-child");
 
-			if (this.lastMouseEnter)
+			if (this.lastMouseEnter) {
 				this.lastMouseEnter();
+			}
 
-			if (this.lastMouseLeave)
+			if (this.lastMouseLeave) {
 				this.lastMouseLeave();
+			}
 
-			//add eventlisteners to the last-child element
+			// add eventlisteners to the last-child element
 			this.lastMouseEnter = this.renderer.listen(this.lastChild, 'mouseenter', () => {
 				this.renderer.addClass(this.carouselList.nativeElement, "last-child-hover");
 			});
@@ -176,11 +193,14 @@ export class FilmListComponent implements OnInit {
 
 	// delete a class from a DOM element
 	removeClass(listItem: ElementRef, itemName: string) {
-		if (listItem)
+		if (listItem) {
 			this.renderer.removeClass(listItem, itemName);
+		}
 	}
 
+	// waarom verandert deze methode de hele lijst!?
 	select(film) {
+		this.opened = true;
 		this.store.dispatch({
 			type: SELECT_FILM,
 			payload: film

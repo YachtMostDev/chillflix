@@ -1,41 +1,45 @@
-<div class="myclass">
-		<div class="row">
-			<div class="column left">
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<h1 style="color:white;">{{film.title}}</h1>
-				<h3 style="color:grey;">
-					{{film.description}}
-				</h3>
-				<h4 style="color:white;">
-					Views: &emsp;  {{film.watched}}
-				</h4>
+<div *ngIf="film" class="film-details">
+	<div class="film-details-header">
+		<button
+			mat-raised-button
+			[color]="'primary'"
+			(click)="close()"
+			style="float: right;"
+		>Close
+		</button>
+	</div>
+	<div class="film-detail-content">
+		<div class="left">
+			<h1 class="film-detail-title">{{film.title}}</h1>
+			<h3 class="film-detail-description">
+				{{film.description}}
+			</h3>
+			<h4 style="color:white;">
+				Views: &emsp; {{film?.watched}}
+			</h4>
 
-				<h4 style="color:white;">
-					Genres:&emsp;
-				</h4>
-				
-				<mat-chip-list>
-					<mat-chip>
-						{{film.categories}}
-					</mat-chip>
-				</mat-chip-list>
-				
-				
+			<h4 style="color:white;">
+				Genres:&emsp;
+			</h4>
+
+			<mat-chip-list>
+				<mat-chip>
+					{{film.categories}}
+				</mat-chip>
+			</mat-chip-list>
+
+			<div class="app-add-movie">
 				<app-add-movie></app-add-movie>
-				
-				<!--THUMBS UP&DOWN HERE!-->
-							
-			</div>	
-	
-			<div *ngIf="film" class="column right">
-					<button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;">Close</button>
-				<img class="img" mat-card-image src="{{film.thumbnail}}" alt="thumbnail">
+				<app-thumbs-up [film]="film"></app-thumbs-up>
+				<app-thumbs-down [film]="film"></app-thumbs-down>
 			</div>
-		
+		</div>
+
+		<div *ngIf="film" class="right">
+			<app-youtube-video class="video"
+							   [url]="film?.embed"
+			></app-youtube-video>
 		</div>
 	</div>
-	<mat-spinner *ngIf="!film" class="spinner"></mat-spinner>
+	<div class="clear"></div>
+</div>
