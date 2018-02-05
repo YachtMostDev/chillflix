@@ -4,6 +4,11 @@
 	color: white;
 }
 
+h2{
+	margin: 40px 60px 0 60px;
+	color: white;
+}
+
 app-film-list-item{
 	position: relative;
 	right: 0px;
