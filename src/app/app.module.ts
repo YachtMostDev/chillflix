@@ -28,6 +28,7 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import {LoginComponent} from './components/login/login.component';
 import {StorageService} from "./services/storage.service";
 import { CanActivateComponent } from './components/can-activate/can-activate.component';
+import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CanActivateComponent } from './components/can-activate/can-activate.com
 	ThumbsUpComponent,
 	SearchMenuComponent,
 	SearchFilterPipe,
-  LoginComponent
+  	LoginComponent,
+  	YoutubeVideoComponent
   ],
   imports: [
 	BrowserModule,
@@ -55,7 +57,7 @@ import { CanActivateComponent } from './components/can-activate/can-activate.com
 	AppRoutingModule,
 	StoreModule.forRoot({ films: filmsReducer }),
 	StoreDevtoolsModule.instrument(),
-	FormsModule, 
+	FormsModule,
 	ReactiveFormsModule
   ],
   providers: [FilmService, StorageService, CanActivateComponent],

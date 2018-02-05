@@ -1,1 +1,5 @@
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+.page {
+	margin-top: 80px;
+	background: #303030;
+}
