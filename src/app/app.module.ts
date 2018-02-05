@@ -1,8 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { filmsReducer } from './state/films.reducer';
+import {StoreModule} from '@ngrx/store';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {filmsReducer} from './state/films.reducer';
 
 import {AppComponent} from './app.component';
 
@@ -12,16 +13,22 @@ import {FilmListItemComponent} from './components//film-list-item/film-list-item
 import {FilmDetailComponent} from './components//film-detail/film-detail.component';
 import {AboutComponent} from './components//about/about.component';
 import {Material} from './material/material.module';
-import { FilmService } from './services/film.service';
-import { RatingComponent } from './components/rating/rating.component';
-import { FilmsComponent } from './components/films/films.component';
-import { FilmListItemTagComponent } from './components/film-list-item-tag/film-list-item-tag.component';
+import {FilmService} from './services/film.service';
+import {RatingComponent} from './components/rating/rating.component';
+import {FilmsComponent} from './components/films/films.component';
+import {FilmListItemTagComponent} from './components/film-list-item-tag/film-list-item-tag.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HamburgerMenuComponent} from './components/hamburger-menu/hamburger-menu.component';
 import {AddMovieComponent} from './components/add-movie/add-movie.component';
 import {AppRoutingModule} from './routers/app-routing.module';
 import {ThumbsUpComponent} from './components/thumbs-up/thumbs-up.component';
 import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.component';
+import { SearchMenuComponent } from './components/search-menu/search-menu.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import {LoginComponent} from './components/login/login.component';
+import {StorageService} from "./services/storage.service";
+import { CanActivateComponent } from './components/can-activate/can-activate.component';
+import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,11 @@ import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.componen
 	AddMovieComponent,
 	HamburgerMenuComponent,
 	ThumbsDownComponent,
-	ThumbsUpComponent
+	ThumbsUpComponent,
+	SearchMenuComponent,
+	SearchFilterPipe,
+  	LoginComponent,
+  	YoutubeVideoComponent
   ],
   imports: [
 	BrowserModule,
@@ -45,9 +56,11 @@ import {ThumbsDownComponent} from './components/thumbs-down/thumbs-down.componen
 	Material,
 	AppRoutingModule,
 	StoreModule.forRoot({ films: filmsReducer }),
-	StoreDevtoolsModule.instrument()
+	StoreDevtoolsModule.instrument(),
+	FormsModule,
+	ReactiveFormsModule
   ],
-  providers: [FilmService],
+  providers: [FilmService, StorageService, CanActivateComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

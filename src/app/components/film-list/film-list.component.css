@@ -7,6 +7,11 @@
 h2{
 	margin: 40px 60px 0 60px;
 	color: white;
+app-film-list-item{
+	position: relative;
+	right: 0px;
+	padding: 0 2px;
+	transition: right 0.3s;
 }
 
 /****** CAROUSEL NAV *****/
@@ -18,53 +23,30 @@ h2{
 	border: none;
 	padding: 0;
 	z-index: 1500;
-	min-width: 60px;
-}
-
-.carousel-nav-button.previous {
-	left: -60px;
-}
-
-.carousel-nav-button.next {
-	right: -60px;
+	min-width: 0;
 }
 
 /**** CAROUSEL LISTR ******/
 .carousel-content {
 	height: 135px;
-	/*overflow: hidden;*/
 }
 
 .carousel-list {
 	position: relative;
 	display:inline-flex;
 	right: 0;
-	width: 100%;
-	transition: right 0.3s;
-	/* flex-wrap: wrap; */
+	transition: all 0.3s;
 }
 
 /* middle list-items */
-/* .carousel-list:hover{
-	right: 90px;
-} */
-
-/* right list-item */
 .carousel-list:hover{
-	right: 180px;
+	right: 90px;
 }
 
-/********* SPINNER *********/
-.spinner-holder {
-	margin: 25px auto;
+.first-child-hover{
+	right: 0 !important;
 }
 
-.bullshit-holder {
-	text-align: center;
-	width: 100%;
-	color: white;
-}
-
-.spinner {
-	margin: 10px auto;
+.last-child-hover{
+	right: 180px !important;
 }

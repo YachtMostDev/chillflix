@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {FilmService} from '../../services/film.service';
 
 @Component({
-  selector: 'app-thumbs-up',
-  templateUrl: './thumbs-up.component.html',
-  styleUrls: ['./thumbs-up.component.css']
+	selector: 'app-thumbs-up',
+	templateUrl: './thumbs-up.component.html',
+	styleUrls: ['./thumbs-up.component.css']
 })
-export class ThumbsUpComponent implements OnInit {
+export class ThumbsUpComponent {
+	@Input() film;
 
-  constructor() { }
+	constructor(private filmService: FilmService) {}
 
-  ngOnInit() {
-  }
-
+	thumbsUpClick() {
+		this.filmService.setRating(this.film, 1);
+	}
 }

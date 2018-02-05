@@ -1,9 +1,3 @@
-<!-- <div ng-app='voteApp' ng-controller='MainCtrl'> <i title="Up Votes" ng-click="upVote()" class="fa fa-arrow-circle-up fa-2x" style='cursor:pointer'></i>
-
-  <br/> <i title="Down Votes" ng-click="downVote()" class="fa fa-arrow-circle-down fa-2x" style='cursor:pointer'></i>
-
-  <br/>Number Of Votes: {{vote}}</div> -->
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <button style="font-size:24px; color: green"><i class="fa fa-thumbs-up"></i></button>
+<button (click)="thumbsUpClick()" style="font-size:24px; color: green; background-color: transparent; border: none;">
+	<mat-icon>thumb_up</mat-icon>
+</button>
