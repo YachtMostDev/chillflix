@@ -14,7 +14,6 @@
 		</div>
 	</div>
 	<div class="carousel-nav">
-		<!--<div *ngIf="previousVisible">-->
 		<button
 			mat-button
 			class="carousel-nav-button previous"
@@ -23,8 +22,6 @@
 		>
 			<mat-icon>navigate_before</mat-icon>
 		</button>
-		<!--</div>-->
-		<!--<div *ngIf="nextVisible">-->
 		<button
 			mat-button
 			class="carousel-nav-button next"
@@ -33,11 +30,9 @@
 		>
 			<mat-icon>navigate_next</mat-icon>
 		</button>
-		<!--</div>-->
 	</div>
 </div>
 
-<!--Toevoegsel Eloy voor import details-->
 <div *ngIf="opened" class="detail">
 	<app-film-detail></app-film-detail>
 <div>

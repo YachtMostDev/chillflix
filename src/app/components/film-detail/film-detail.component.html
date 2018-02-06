@@ -36,9 +36,9 @@
 		</div>
 
 		<div *ngIf="film" class="right">
-			<app-youtube-video class="video"
-							   [url]="film?.embed"
-			></app-youtube-video>
+			<a [routerLink]="['/films/', film.id]">
+				<img src="{{film.thumbnail}}" />
+			</a>
 		</div>
 	</div>
 	<div class="clear"></div>
