@@ -4,6 +4,41 @@
 	color: white;
 }
 
+.wrapper{
+	margin: 15px 0;
+	height: 135px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+}
+
+.nav-button{
+	width: 80px;
+	height: 100%;
+	z-index: 9999;
+}
+
+.list-wrapper{
+	position: relative;
+	width: calc(100% - 160px);
+	height: 100%;
+	/*background-color: red;*/
+}
+
+.list{
+	position: absolute;
+	left: 0;
+	width: 1000000px;
+	height: 100%;
+	transition: left 0.7s;
+}
+
+.film{
+	display: inline-block;
+	height: 100%;
+}
+
 h2{
 	margin: 40px 60px 0 60px;
 	color: white;
@@ -14,41 +49,4 @@ app-film-list-item{
 	right: 0px;
 	padding: 0 2px;
 	transition: right 0.3s;
-}
-
-/****** CAROUSEL NAV *****/
-.carousel-nav-button.previous, .carousel-nav-button.next {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.5);
-	border: none;
-	padding: 0;
-	z-index: 1500;
-	min-width: 0;
-}
-
-/**** CAROUSEL LISTR ******/
-.carousel-content {
-	height: 135px;
-}
-
-.carousel-list {
-	position: relative;
-	display:inline-flex;
-	right: 0;
-	transition: all 0.3s;
-}
-
-/* middle list-items */
-.carousel-list:hover{
-	right: 90px;
-}
-
-.first-child-hover{
-	right: 0 !important;
-}
-
-.last-child-hover{
-	right: 180px !important;
 }
