@@ -2,42 +2,27 @@
 <div class="pagesHolder">
 	<div class="page"></div>
 </div>
-<div #carousel class="carousel" [ngStyle]="{'margin-left': buttonWidth + 'px','margin-right': buttonWidth + 'px'}">
-	<div class="carousel-content">
-		<div #carouselList class="carousel-list" [ngStyle]="{'margin-left': -negativeMargin + 'px'}">
-			<app-film-list-item
-				*ngFor='let film of allFilms | searchFilter | async'
-				[film]='film'
-				#item
-				(click)="select(film)">
+<div class="wrapper">
+	<button mat-button class="nav-button nav-button-left" (click)="previous()">
+		<mat-icon>navigate_before</mat-icon>
+	</button>
+	<div class="list-wrapper">
+		<div class="list" [ngStyle]="{'left': (-index * 1466 ) + 'px'}">
+			<app-film-list-item class="film"
+								*ngFor='let film of allFilms | searchFilter | async'
+								[film]='film'
+								#item
+								(click)="select(film)">
 			</app-film-list-item>
 		</div>
 	</div>
-	<div class="carousel-nav">
-		<!--<div *ngIf="previousVisible">-->
-		<button
-			mat-button
-			class="carousel-nav-button previous"
-			(click)="previousClick()"
-			[ngStyle]="{'width': buttonWidth + 'px','left': -buttonWidth + 'px'}"
-		>
-			<mat-icon>navigate_before</mat-icon>
-		</button>
-		<!--</div>-->
-		<!--<div *ngIf="nextVisible">-->
-		<button
-			mat-button
-			class="carousel-nav-button next"
-			(click)="nextClick()"
-			[ngStyle]="{'width': buttonWidth + 'px','right': -buttonWidth + 'px'}"
-		>
-			<mat-icon>navigate_next</mat-icon>
-		</button>
-		<!--</div>-->
-	</div>
+	<button mat-button class="nav-button nav-button-right" (click)="next()">
+		<mat-icon>navigate_next</mat-icon>
+	</button>
 </div>
 
 <!--Toevoegsel Eloy voor import details-->
 <div *ngIf="opened" class="detail">
 	<app-film-detail></app-film-detail>
-<div>
+</div>
+
