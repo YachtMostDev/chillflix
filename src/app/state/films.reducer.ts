@@ -1,6 +1,6 @@
 import {
 	LOAD_FILMS, SELECT_FILM, DESELECT_FILM, RATING_PLUS, RATING_MINUS, SET_VIEW,
-	RATING_RESET, ADD_TO_QUEUE, REMOVE_FROM_QUEUE, SET_SEARCH_VALUE
+	RATING_RESET, ADD_TO_QUEUE, REMOVE_FROM_QUEUE, SET_SEARCH_VALUE, ADD_FILMS
 } from './films.actions';
 
 const initialState = {
@@ -15,6 +15,8 @@ export const filmsReducer = (state = initialState,
 	switch (action.type) {
 		case LOAD_FILMS:
 			return {...state, films: action.payload};
+		case ADD_FILMS:
+			return {...state, films: state.films.concat(action.payload)};
 		case SELECT_FILM:
 			return {...state, selectedFilm: action.payload.id};
 		case DESELECT_FILM:
