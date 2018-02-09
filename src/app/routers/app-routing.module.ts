@@ -18,10 +18,6 @@ const routes: Routes = [
 		loadChildren: '../not-found/not-found.module#NotFoundModule'
 	},
 	{
-		path: 'searchValue',
-		redirectTo: 'not-found'
-	},
-	{
 		path: '**',
 		redirectTo: 'not-found'
 	}
