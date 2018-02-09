@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { YoutubeService} from '../services/youtube.service'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
+import { RootRenderer } from '@angular/core/src/render/api';
+import { NotFoundModule } from '../not-found/not-found.module';
 
 @Pipe({
 	name: 'searchFilter'
@@ -20,7 +22,7 @@ export class SearchFilterPipe implements PipeTransform {
 			let data =  array.filter(film => film.title.toUpperCase().indexOf(searchValue.toUpperCase()) !== -1);
 			if (data.length === 0)
 				data = this.youtubeService.getYoutubeResults(searchValue);
-			return data;
+				return data;
 		});
 	}
 }
