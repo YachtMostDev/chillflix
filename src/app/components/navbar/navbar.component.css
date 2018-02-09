@@ -20,7 +20,7 @@
     color: rgb(201, 201, 201);
     transition: all 0.2s;
 	height: 90%;
-
+	margin-left: 0.5%;
 }
 
 .search-container:hover{
