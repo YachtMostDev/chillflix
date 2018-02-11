@@ -50,14 +50,17 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 	}
 
 	addMovieClick() {
+		console.log('selected film: ' + JSON.stringify(this.selectedFilm));
+		console.log('state: ' + this.SELECTED);
+
 		if (this.state === this.SELECTED) {
 			// remove from watch queue
 			this.state = this.UNSELECTED;
-			this.removeFromQueue(this.selectedFilm.id);
+			this.removeFromQueue(this.selectedFilm);
 		} else {
 			// add to watch queue
 			this.state = this.UNSELECTED;
-			this.addToQueue(this.selectedFilm.id);
+			this.addToQueue(this.selectedFilm);
 		}
 		// if (this.selectedFilm != null) {
 		// 	console.log('adding ' + this.selectedFilm + ' to the queue');
