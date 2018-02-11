@@ -12,3 +12,7 @@ body {
 	width: 100%;
 	overflow-x: hidden;
 }
+
+app-film-list{
+	margin: 1px;
+}
