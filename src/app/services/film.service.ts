@@ -41,12 +41,8 @@ export class FilmService {
 				ratingObject.upvote = -1;
 			}
 		}
-<<<<<<< HEAD
-		this.http.post(this.url + `\\${film.id}\\vote`, ratingObject)
-=======
 		const postUrl = this.url + `/${film.id}/vote`;
 		this.http.post(postUrl, ratingObject)
->>>>>>> develop
 			.subscribe((movie: any) => {
 				this.store.dispatch({
 					type: action,
@@ -54,14 +50,9 @@ export class FilmService {
 				});
 			});
 	}
-<<<<<<< HEAD
-	addView(id) {
-		this.http.post(this.url + `\\${id}\\watch`, {})
-=======
 
 	addView(film) {
 		this.http.post(this.url + `\\${film.id}\\watch`, {})
->>>>>>> develop
 			.subscribe((filmResult: any) => {
 				this.store.dispatch({
 					type: SET_VIEW,
