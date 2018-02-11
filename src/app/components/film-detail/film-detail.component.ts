@@ -23,6 +23,12 @@ export class FilmDetailComponent implements OnInit {
 		this.store.select("films").subscribe(state => this.film = state.films.find(film => film.id === state.selectedFilm));
 	}
 
+	select() {
+		this.store.dispatch({
+			type: SELECT_FILM
+		});
+	}
+
 	close() {
 		this.store.dispatch({
 			type: DESELECT_FILM
