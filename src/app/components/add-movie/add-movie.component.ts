@@ -18,6 +18,9 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 	private content;
 	private state;
 
+	private classSelectedState = false;
+	private classUnselectedState = false;
+
 	private SELECTED = "selected";
 	private UNSELECTED = "unselected";
  	constructor(private store: Store<any>, private filmService: FilmService) { }
@@ -28,48 +31,48 @@ export class AddMovieComponent implements OnInit, OnDestroy {
 			.subscribe(film => {
 				this.selectedFilm = film;
 			});
-
-		// doesn't work?
-		// const isInQueue = this.store.select("films").subscribe(
-		// 	state => this.filmsInQueue = state.films.filter(
-		// 		film => state.queue.indexOf(film.id) !== -1
-		// 	)
-		// );
-
-		const isInQueue = false;
-		if (isInQueue) {
-			this.content = "-";
-			this.state = this.SELECTED;
-		} else {
-			this.content = "+";
-			this.state = this.UNSELECTED;
-		}
+		this.store.select('films').pluck('queue').subscribe(value => {
+			const arr = Object.values(value);
+			const result = arr.indexOf(this.selectedFilm);
+			if (result > -1) {
+				this.state = this.SELECTED;
+			} else {
+				this.state = this.UNSELECTED;
+			}
+			this.setStyle();
+		});
 	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}
 
 	addMovieClick() {
-		console.log('selected film: ' + JSON.stringify(this.selectedFilm));
-		console.log('state: ' + this.SELECTED);
-
 		if (this.state === this.SELECTED) {
 			// remove from watch queue
 			this.state = this.UNSELECTED;
 			this.removeFromQueue(this.selectedFilm);
 		} else {
 			// add to watch queue
-			this.state = this.UNSELECTED;
+			this.state = this.SELECTED;
 			this.addToQueue(this.selectedFilm);
 		}
-		// if (this.selectedFilm != null) {
-		// 	console.log('adding ' + this.selectedFilm + ' to the queue');
-		// 	this.store.dispatch({ type: ADD_TO_QUEUE, payload: {'id': this.selectedFilm.id } });
-		// 	this.state = this.SELECTED;
-		// } else {
-		// 	console.log('selected film = null, can\'t add to queue');
-		// }
+		this.setStyle();
 	}
+
+	setStyle() {
+		// if selected movie is in the queue. set the button state to selected and content to -
+		// if selected movie is not in the queue. set the button state to unselected and content to +
+		if (this.state === this.SELECTED) {
+			this.content = '-';
+			this.classSelectedState = true;
+			this.classUnselectedState = false;
+		} else {
+			this.content = '+';
+			this.classSelectedState = false;
+			this.classUnselectedState = true;
+		}
+	}
+
 	addToQueue(id) {
 		this.store.dispatch({ type: ADD_TO_QUEUE, payload: { 'id': id } });
 	}

@@ -1,1 +1,2 @@
-<button (click)="addMovieClick()" class="button add-movie {{state}}">{{content}}</button>
+<button (click)="addMovieClick()" [ngClass]="{'selected':classSelectedState, 'unselected':classUnselectedState}" class="button add-movie">{{content}}</button>
+
