@@ -29,10 +29,12 @@ export class FilmListComponent implements OnInit {
 
 	ngOnInit() {
 		this.store.select('films').pluck('selectedFilm').subscribe(value => {
+			console.log(value);
 			if (!value) { this.opened = false; }
 		});
 		this.filmService.getAll();
 		this.store.select("films").pluck("films").subscribe((value) => {
+			console.log("store subscribe");
 			this.allFilms = value;
 		});
 	}
