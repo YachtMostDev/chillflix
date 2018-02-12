@@ -8,10 +8,10 @@
     color: rgb(201, 201, 201);
     transition: all 0.2s;
 	height: 100%;
-	margin-left: 0.5%;
+	margin-left: 2.0%;
 }
 
-.search-container:hover{
+.search-container:hover {
 	background-color: rgb(58, 1, 1);
     border-bottom-color:rgb(238, 0, 0);
     border-bottom-width: 10px;
