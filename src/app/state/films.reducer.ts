@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const filmsReducer = (state = initialState,
-							 action) => {
+	action) => {
 	switch (action.type) {
 		case LOAD_FILMS:
 			return {...state, films: action.payload};
