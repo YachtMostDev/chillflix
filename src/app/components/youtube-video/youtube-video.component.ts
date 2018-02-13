@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FilmService } from '../../services/film.service';
 
 @Component({
   selector: 'app-youtube-video',
@@ -7,13 +8,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./youtube-video.component.css']
 })
 export class YoutubeVideoComponent {
-  @Input() url : string;
+  @Input() film;
   public player;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private filmService: FilmService) { }
 
-  youtubeURL = () => {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  ngOnInit() {
+    (<any>window).onYouTubeIframeAPIReady = () => {
+      this.startFilm();
+    };
   }
 
   ngAfterViewInit() {
@@ -24,36 +27,27 @@ export class YoutubeVideoComponent {
     doc.body.appendChild(playerApiScript);
   }
 
-  ngOnInit() {
-    (<any>window).onYouTubeIframeAPIReady = () => {
-      this.playVideo();
-    };
-  }
-
+  // save the progress of the video when the component is destroyed
   ngOnDestroy() {
-    console.log(this.player.getCurrentTime());
+    this.filmService.setProgression(this.film.id, `${this.player.getCurrentTime()}`)
   }
 
-  playVideo(){
-    console.log("exodus");
-      this.player = new (<any>window).YT.Player('ytPlayer', {
-        videoId: (this.url).substring(30),
-        events: {
-          'onReady': () => {
-            // go to a specific point in the video, paramter is in seconds
-            if (true){
-            }
-            else {
-              this.player.seekTo(42);
-            }
-            console.log("ready");
-          },
-          'onStateChange': () => {
-            console.log(this.player);
-            // get the current time in the video in seconds
-            console.log(this.player.getCurrentTime());
-          }
+  youtubeURL = () => {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.film.embed);
+  }
+
+  // add the film to the DOM with evens
+  startFilm() {
+    this.player = new (<any>window).YT.Player('ytPlayer', {
+      videoId: (this.film.embed).substring(30),
+      events: {
+        'onReady': () => {
+          this.player.seekTo(this.filmService.getProgression(this.film.id));
+        },
+        'onStateChange': () => {
+          this.filmService.setProgression(this.film.id, `${this.player.getCurrentTime()}`);
         }
-      });
+      }
+    });
   }
 }
