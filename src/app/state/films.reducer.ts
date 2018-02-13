@@ -15,8 +15,6 @@ export const filmsReducer = (state = initialState,
 	switch (action.type) {
 		case LOAD_FILMS:
 			return {...state, films: action.payload};
-		case ADD_FILMS:
-			return {...state, films: state.films.concat(action.payload)};
 		case SELECT_FILM:
 			return {...state, selectedFilm: action.payload.id};
 		case DESELECT_FILM:
