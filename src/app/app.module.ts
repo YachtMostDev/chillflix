@@ -29,6 +29,7 @@ import {LoginComponent} from './components/login/login.component';
 import {StorageService} from "./services/storage.service";
 import { CanActivateComponent } from './components/can-activate/can-activate.component';
 import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
+import {YoutubeService} from './services/youtube.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.co
 	FormsModule,
 	ReactiveFormsModule
   ],
-  providers: [FilmService, StorageService, CanActivateComponent],
+  providers: [FilmService, YoutubeService, StorageService, CanActivateComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {
