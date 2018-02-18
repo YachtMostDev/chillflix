@@ -27,7 +27,7 @@ import { SearchMenuComponent } from './components/search-menu/search-menu.compon
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import {LoginComponent} from './components/login/login.component';
 import {StorageService} from "./services/storage.service";
-import { CanActivateComponent } from './components/can-activate/can-activate.component';
+import { CanActivateGuard } from './guards/can-activate/can-activate';
 import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
 
 @NgModule({
@@ -60,7 +60,7 @@ import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.co
 	FormsModule,
 	ReactiveFormsModule
   ],
-  providers: [FilmService, StorageService, CanActivateComponent],
+  providers: [FilmService, StorageService, CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
