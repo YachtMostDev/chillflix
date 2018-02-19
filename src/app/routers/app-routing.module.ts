@@ -4,13 +4,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {FilmDetailComponent} from '../components/film-detail/film-detail.component';
 import {FilmsComponent} from '../components/films/films.component';
 import {LoginComponent} from '../components/login/login.component';
-import {CanActivateComponent} from "../components/can-activate/can-activate.component";
+import {CanActivateGuard} from "../guards/can-activate/can-activate";
 
 const routes: Routes = [
-	{path: 'films/:id', component: FilmDetailComponent, canActivate: [CanActivateComponent]},
-	{path: 'films', component: FilmsComponent, canActivate: [CanActivateComponent]},
-	{path: 'about', component: AboutComponent, canActivate: [CanActivateComponent]},
-	{path: 'home', component: FilmsComponent, canActivate: [CanActivateComponent]},
+	{path: 'films/:id', component: FilmDetailComponent, canActivate: [CanActivateGuard]},
+	{path: 'films', component: FilmsComponent, canActivate: [CanActivateGuard]},
+	{path: 'about', component: AboutComponent, canActivate: [CanActivateGuard]},
+	{path: 'home', component: FilmsComponent, canActivate: [CanActivateGuard]},
 	{path: 'login', component: LoginComponent},
 	{path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
