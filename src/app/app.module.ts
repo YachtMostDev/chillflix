@@ -29,6 +29,7 @@ import {LoginComponent} from './components/login/login.component';
 import {StorageService} from "./services/storage.service";
 import { CanActivateComponent } from './components/can-activate/can-activate.component';
 import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
+import { ThumbsContainerComponent } from './components/thumbs-container/thumbs-container.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.co
 	SearchMenuComponent,
 	SearchFilterPipe,
   	LoginComponent,
-  	YoutubeVideoComponent
+  	YoutubeVideoComponent,
+  	ThumbsContainerComponent
   ],
   imports: [
 	BrowserModule,
