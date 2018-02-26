@@ -8,7 +8,7 @@ import {CanActivateGuard} from "../guards/can-activate/can-activate";
 import {FilmDetailComponent} from '../components/film-detail/film-detail.component';
 
 const routes: Routes = [
-	{path: 'films/:id', component: FilmDetailComponent, canActivate: [CanActivateGuard]},
+	{path: 'films/:id', component: VideoPageComponent, canActivate: [CanActivateGuard]},
 	{path: 'films', component: FilmsComponent, canActivate: [CanActivateGuard]},
 	{path: 'about', component: AboutComponent, canActivate: [CanActivateGuard]},
 	{path: 'home', component: FilmsComponent, canActivate: [CanActivateGuard]},
