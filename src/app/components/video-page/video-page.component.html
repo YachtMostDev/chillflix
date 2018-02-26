@@ -1,0 +1,17 @@
+
+<!-- Left column contains the go back arrow to the film page(Only loads when there's a video!) -->
+<div *ngIf="film" class="column left">
+    <button mat-raised-button [color]="'primary'" [routerLink]="['/films']" style="float: right;"><b><font size="6">←</font></b></button>
+</div>
+
+<!-- Right column size is fixed in the video-page.component.html -->
+<div class="column right">
+  <div *ngIf="film">
+    <app-youtube-video class="video"
+              [url]="film?.embed"
+    ></app-youtube-video>
+  </div>  
+</div>
+
+<!-- What, nothing loaded? Here, take a spinner! -->
+<mat-spinner *ngIf="!film" class="spinner"></mat-spinner>

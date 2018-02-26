@@ -1,0 +1,20 @@
+
+div{    
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    right: 100px;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+	width: 4%;
+}
+
+.right {
+	width: 96%;
+}
+
