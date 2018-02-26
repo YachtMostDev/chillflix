@@ -1,3 +1,11 @@
 <p>
   video-page works!
 </p>
+
+<div class="videopage-content">
+  <div *ngIf="film">
+    <app-youtube-video class="video"
+              [url]="film?.embed"
+    ></app-youtube-video>
+  </div>  
+</div>
