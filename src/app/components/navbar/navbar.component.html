@@ -1,17 +1,15 @@
 <mat-toolbar class="navbar">
-  <app-hamburger-menu></app-hamburger-menu>
-
-  <div class="title">
-    <b [routerLink]="['/home']">Chillflix</b>
-  </div>
-
-    <div class="button-container">
-      <button mat-button [routerLink]="['/home']">Homepage</button>
-      <button mat-button [routerLink]="['/series']">Series</button>
-      <button mat-button [routerLink]="['/films']">Films</button>
-      <button mat-button [routerLink]="['/originals']">Originals</button>
-      <button mat-button [routerLink]="['/recentlyAdded']">Recently added</button>
-      <button mat-button [routerLink]="['/myList']">My List</button>
-    </div>
+	<app-hamburger-menu></app-hamburger-menu>
+	<div class="title">
+		<b [routerLink]="['/home']">Chillflix</b>
+	</div>
+	<div class="button-container">
+		<button mat-button [routerLink]="['/home']">Homepage</button>
+		<button mat-button [routerLink]="['/series']">Series</button>
+		<button mat-button [routerLink]="['/films']">Films</button>
+		<button mat-button [routerLink]="['/originals']">Originals</button>
+		<button mat-button [routerLink]="['/recentlyAdded']">Recently added</button>
+		<button mat-button [routerLink]="['/myList']">My List</button>
+	</div>
 	<app-search-menu></app-search-menu>
 </mat-toolbar>

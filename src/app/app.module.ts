@@ -31,6 +31,7 @@ import { CanActivateGuard } from './guards/can-activate/can-activate';
 import {YoutubeVideoComponent} from './components/youtube-video/youtube-video.component';
 import { VideoPageComponent } from './components/video-page/video-page.component';
 import { ThumbsContainerComponent } from './components/thumbs-container/thumbs-container.component';
+import {YoutubeService} from './services/youtube.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { ThumbsContainerComponent } from './components/thumbs-container/thumbs-c
 	FormsModule,
 	ReactiveFormsModule
   ],
-  providers: [FilmService, StorageService, CanActivateGuard],
+  providers: [FilmService, StorageService, YoutubeService, CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
