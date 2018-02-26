@@ -66,7 +66,7 @@ import {YoutubeService} from './services/youtube.service';
 	FormsModule,
 	ReactiveFormsModule
   ],
-  providers: [FilmService, StorageService, CanActivateGuard],
+  providers: [FilmService, StorageService, YoutubeService, CanActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
