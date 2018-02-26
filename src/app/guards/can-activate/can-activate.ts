@@ -3,7 +3,7 @@ import {CanActivate, Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
 
 @Injectable()
-export class CanActivateComponent implements CanActivate {
+export class CanActivateGuard implements CanActivate {
 
 	constructor(private storageService: StorageService, private router: Router) {
 	}
@@ -13,7 +13,7 @@ export class CanActivateComponent implements CanActivate {
 			return true;
 		} else {
 			this.router.navigate(['/login']);
-			return;
+			return false;
 		}
 	}
 }

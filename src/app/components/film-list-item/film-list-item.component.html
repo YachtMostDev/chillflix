@@ -1,21 +1,22 @@
 <div class="carousel-item">
-  <div class="img-container">
-    <img class="img" mat-card-image src={{updatedFilm.thumbnail}} alt="thumbnail">
-    <div class="gradient-overlay">
-      <div class="play-container">
-        <mat-icon class="play-button item-symbol">play_circle_outline</mat-icon>
-      </div>
-      <div class="details-container">
-        <div class="thumbnail-info item-symbol">
-          <h3>
-            {{updatedFilm.title}}
-          </h3>
-          <p>
-            {{updatedFilm.categories}}
-          </p>
-        </div>
-        <mat-icon class="details-button item-symbol">expand_more</mat-icon>
-        <app-film-list-item-tag></app-film-list-item-tag>
-      </div>
-    </div>
-  </div>
+	<div class="img-container">
+		<img class="img" mat-card-image src={{updatedFilm.thumbnail}} alt="thumbnail">
+		<div class="gradient-overlay">
+			<div class="play-container">
+				<mat-icon class="play-button item-symbol">play_circle_outline</mat-icon>
+			</div>
+			<div class="details-container">
+				<div class="thumbnail-info item-symbol">
+					<h3>
+						{{updatedFilm.title}}
+					</h3>
+					<p>
+						{{updatedFilm.categories}}
+					</p>
+				</div>
+				<mat-icon class="details-button item-symbol">expand_more</mat-icon>
+				<app-film-list-item-tag></app-film-list-item-tag>
+			</div>
+		</div>
+	</div>
+</div>
