@@ -51,7 +51,7 @@ import { ThumbsContainerComponent } from './components/thumbs-container/thumbs-c
 	SearchFilterPipe,
   	LoginComponent,
   	YoutubeVideoComponent,
-  	VideoPageComponent
+  	VideoPageComponent,
   	ThumbsContainerComponent
 
   ],
