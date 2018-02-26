@@ -1,9 +1,9 @@
 import {AboutComponent} from './../components/about/about.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {FilmDetailComponent} from '../components/film-detail/film-detail.component';
 import {FilmsComponent} from '../components/films/films.component';
 import {LoginComponent} from '../components/login/login.component';
+import {VideoPageComponent} from '../components/video-page/video-page.component';
 import {CanActivateGuard} from "../guards/can-activate/can-activate";
 
 const routes: Routes = [
