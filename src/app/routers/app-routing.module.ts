@@ -5,6 +5,7 @@ import {FilmsComponent} from '../components/films/films.component';
 import {LoginComponent} from '../components/login/login.component';
 import {VideoPageComponent} from '../components/video-page/video-page.component';
 import {CanActivateGuard} from "../guards/can-activate/can-activate";
+import {FilmDetailComponent} from '../components/film-detail/film-detail.component';
 
 const routes: Routes = [
 	{path: 'films/:id', component: FilmDetailComponent, canActivate: [CanActivateGuard]},
