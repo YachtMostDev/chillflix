@@ -30,15 +30,14 @@
 
 			<div class="app-add-movie">
 				<app-add-movie></app-add-movie>
-				<app-thumbs-up [film]="film"></app-thumbs-up>
-				<app-thumbs-down [film]="film"></app-thumbs-down>
+				<app-thumbs-container [film]="film"></app-thumbs-container>
 			</div>
 		</div>
 
 		<div *ngIf="film" class="right">
-			<app-youtube-video class="video"
-							   [url]="film?.embed"
-			></app-youtube-video>
+			<a [routerLink]="['/films/', film.id]">
+				<img src="{{film.thumbnail}}" />
+			</a>
 		</div>
 	</div>
 	<div class="clear"></div>

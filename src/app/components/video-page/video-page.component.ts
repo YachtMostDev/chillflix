@@ -9,27 +9,21 @@ import 'rxjs/add/operator/find';
 import 'rxjs/add/operator/do';
 
 @Component({
-	selector: 'app-film-detail',
-	templateUrl: './film-detail.component.html',
-	styleUrls: ['./film-detail.component.css']
+  selector: 'app-video-page',
+  templateUrl: './video-page.component.html',
+  styleUrls: ['./video-page.component.css']
 })
-export class FilmDetailComponent implements OnInit {
-	private film;
+export class VideoPageComponent implements OnInit {
+  private film;
 
-	constructor(private route: ActivatedRoute, private filmService: FilmService, private store: Store<any>) {}
+  constructor(private route: ActivatedRoute, private filmService: FilmService, private store: Store<any>) { }
 
-	ngOnInit() {
+  ngOnInit() {
 		this.filmService.getAll();
 		this.store.select("films").subscribe(state => this.film = state.films.find(film => film.id === state.selectedFilm));
-	}
+  }
 
-	select() {
-		this.store.dispatch({
-			type: SELECT_FILM
-		});
-	}
-
-	close() {
+  close() {
 		this.store.dispatch({
 			type: DESELECT_FILM
 		});
