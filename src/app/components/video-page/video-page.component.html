@@ -8,7 +8,7 @@
 <div class="column right">
   <div *ngIf="film">
     <app-youtube-video class="video"
-              [url]="film?.embed"
+              [film]="film"
     ></app-youtube-video>
   </div>  
 </div>

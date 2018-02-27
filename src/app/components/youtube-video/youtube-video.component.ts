@@ -11,9 +11,10 @@ export class YoutubeVideoComponent {
   @Input() film;
   public player;
 
-  constructor(private sanitizer: DomSanitizer, private filmService: FilmService) { }
+  constructor(private filmService: FilmService) { }
 
   ngOnInit() {
+    console.log(this.film);
     (<any>window).onYouTubeIframeAPIReady = () => {
       this.startFilm();
     };
@@ -28,16 +29,14 @@ export class YoutubeVideoComponent {
   }
 
   // save the progress of the video when the component is destroyed
-  ngOnDestroy() {
-    this.filmService.setProgression(this.film.id, `${this.player.getCurrentTime()}`)
-  }
-
-  youtubeURL = () => {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.film.embed);
-  }
+  // ngOnDestroy() {
+  //   this.filmService.setProgression(this.film.id, `${this.player.getCurrentTime()}`)
+  //   this.player = null;
+  // }
 
   // add the film to the DOM with evens
   startFilm() {
+    console.log('start');
     this.player = new (<any>window).YT.Player('ytPlayer', {
       videoId: (this.film.embed).substring(30),
       events: {
